@@ -1,0 +1,12 @@
+Order:
+  type: object
+  required:
+    - note
+    - locker
+  properties:
+    note:
+      type: string
+    locker:
+      type: string
+    status:
+      type: string

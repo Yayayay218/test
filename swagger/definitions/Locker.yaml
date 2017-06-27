@@ -1,0 +1,9 @@
+Locker:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+    status:
+      type: string

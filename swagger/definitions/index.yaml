@@ -1,0 +1,4 @@
+Locker:
+  $ref: ./Locker.yaml#/Locker
+Order:
+  $ref: ./Order.yaml#/Order

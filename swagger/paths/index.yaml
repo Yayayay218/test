@@ -1,0 +1,8 @@
+/lockers:
+  $ref: locker.yaml#/lockers
+/lockers/{id}:
+  $ref: locker.yaml#/lockerById
+/orders:
+  $ref: order.yaml#/orders
+/orders/{id}:
+  $ref: order.yaml#/orderById

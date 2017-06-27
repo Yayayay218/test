@@ -1,0 +1,84 @@
+orders:
+  post:
+    tags:
+      - orders
+    description:  Create a New Order
+    produces:
+      - application/json
+    parameters:
+      - name: data
+        description:  Order object
+        type: object
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Order'
+    responses:
+      200:
+        description: OK
+        schema:
+          $ref: '#/definitions/Order'
+  get:
+    tags:
+      - orders
+    responses:
+      200:
+        description: OK
+        schema:
+          $ref: '#/definitions/Order'
+
+orderById:
+ get:
+    tags:
+      - orders
+    parameters:
+      - name: id
+        description: Order id
+        required: true
+        in: path
+        type: string
+    responses:
+      200:
+        description: OK
+        schema:
+          $ref: '#/definitions/Order'
+ put:
+    tags:
+      - orders
+    description: Edit Order
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Order id
+        required: true
+        in: path
+        type: string
+      - name: data
+        description: Order object
+        type: object
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Order'
+    responses:
+      200:
+        description: OK
+        schema:
+          $ref: '#/definitions/Order'
+
+ delete:
+    tags:
+      - orders
+    description: Delete Order
+    parameters:
+      - name: id
+        description: Order id
+        required: true
+        in: path
+        type: string
+    responses:
+      200:
+        description: OK
+        schema:
+          $ref: '#/definitions/Order'
