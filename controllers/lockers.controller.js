@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var HTTPStatus = require('../helpers/lib/http_status');
 var constant = require('../helpers/lib/constant');
-var randomstring = require('randomstring');
 
 var Lockers = mongoose.model('Lockers');
 
@@ -13,10 +12,6 @@ var sendJSONresponse = function (res, status, content) {
 
 //  POST a Locker
 module.exports.lockerPOST = function (req, res) {
-    req.body.pinCode = randomstring.generate({
-        length: 6,
-        charset: 'numeric'
-    });
     var data = req.body;
     var locker = new Lockers(data);
 
@@ -34,17 +29,32 @@ module.exports.lockerPOST = function (req, res) {
 
 //  GET All Lockers
 module.exports.lockerGetAll = function (req, res) {
-    // var query = req.query || {};
-    //
+    var query = req.query || {};
+
     const page = Number(req.query.page);
-    // delete req.query.page;
+    delete req.query.page;
     const limit = Number(req.query.limit);
-    // delete req.query.limit;
+    delete req.query.limit;
     const sort = req.query.sort;
-    // delete req.query.sort;
+    delete req.query.sort;
+    const status = req.query.status;
+
+    if (req.query.available)
+        query = {
+            "available": {$in: req.query.available}
+        };
+    if (req.query.status)
+        query = {
+            "status": {$in: status}
+        };
+
+    if (req.query.id)
+        query = {
+            "_id": {$in: req.query.id}
+        };
 
     Lockers.paginate(
-        {},
+        query,
         {
             sort: sort,
             page: page,
@@ -96,7 +106,7 @@ module.exports.lockerPUT = function (req, res) {
     req.body.updateAt = Date.now();
     var data = req.body;
 
-    Lockers.findByIdAndUpdate(req.params.id, data, function (err, locker) {
+    Lockers.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, locker) {
         if (err)
             sendJSONresponse(res, 400, err);
         else if (locker)

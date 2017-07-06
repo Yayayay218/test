@@ -21,6 +21,15 @@ orders:
   get:
     tags:
       - orders
+    parameters:
+      - name: id
+        description: Order Id
+        type: string
+        in: query
+      - name: status
+        description: Order Status
+        type: number
+        in: query
     responses:
       200:
         description: OK
@@ -28,20 +37,6 @@ orders:
           $ref: '#/definitions/Order'
 
 orderById:
- get:
-    tags:
-      - orders
-    parameters:
-      - name: id
-        description: Order id
-        required: true
-        in: path
-        type: string
-    responses:
-      200:
-        description: OK
-        schema:
-          $ref: '#/definitions/Order'
  put:
     tags:
       - orders

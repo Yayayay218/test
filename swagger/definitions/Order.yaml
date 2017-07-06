@@ -9,4 +9,6 @@ Order:
     locker:
       type: string
     status:
-      type: string
+      type: number
+    pinCode:
+      type: number

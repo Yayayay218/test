@@ -13,8 +13,8 @@ var ordersSchema = new mongoose.Schema({
         default: Date.now()
     },
     status: {
-        type: String,
-        default: 'new'
+        type: Number,
+        default: 0
     },
     locker: {type: Schema.Types.ObjectId, ref: 'Lockers', required: true}
 });

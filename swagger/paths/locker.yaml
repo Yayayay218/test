@@ -22,27 +22,25 @@ lockers:
     tags:
       - lockers
     description: Get All Locker
+    parameters:
+      - name: id
+        in: query
+        description:  Locker id
+        type: string
+      - name: status
+        in: query
+        description:  Locker status
+        type: number
+      - name: available
+        in: query
+        description:  Locker available
+        type: number
     responses:
       200:
         description: OK
         schema:
           $ref: '#/definitions/Locker'
 lockerById:
- get:
-    tags:
-      - lockers
-    description:  Get a Locker
-    parameters:
-      - name: id
-        description: Locker id
-        required: true
-        in: path
-        type: string
-    responses:
-      200:
-        description: OK
-        schema:
-          $ref: '#/definitions/Locker'
  put:
     tags:
       - lockers

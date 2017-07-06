@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var constant = require('../helpers/lib/constant');
-var randomstring = require('randomstring');
 
 var Orders = mongoose.model('Orders');
 var Lockers = mongoose.model('Lockers');
@@ -29,7 +28,9 @@ module.exports.orderPOST = function (req, res) {
 
     checkAndUpdateLockerAvailable(req.body.locker)
         .then(function (locker) {
-            if (locker.status === constant.UNLOCK) {
+            if (locker.available === constant.AVAILABLE) {
+                locker.available = 0;
+                locker.save();
                 order.save(function (err, order) {
                     if (err)
                         sendJSONresponse(res, 400, err);
@@ -46,17 +47,25 @@ module.exports.orderPOST = function (req, res) {
 
 //  GET All Orders
 module.exports.orderGetAll = function (req, res) {
-    // var query = req.query || {};
+    var query = req.query || {};
 
     const page = Number(req.query.page);
-    // delete req.query.page;
+    delete req.query.page;
     const limit = Number(req.query.limit);
-    // delete req.query.limit;
+    delete req.query.limit;
     const sort = req.query.sort;
-    // delete req.query.sort;
+    delete req.query.sort;
 
+    if (req.query.status)
+        query = {
+            "status": {$in: req.query.status}
+        };
+    if (req.query.id)
+        query = {
+            "_id": {$in: req.query.id}
+        };
     Orders.paginate(
-        {},
+        query,
         {
             sort: sort,
             populate: 'locker',
@@ -92,24 +101,23 @@ module.exports.orderGetOne = function (req, res) {
 module.exports.orderPUT = function (req, res) {
     req.body.updateAt = Date.now();
     var data = req.body;
-    Orders.findByIdAndUpdate(req.params.id, data, function (err, order) {
-        if (err)
+    Orders.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, order) {
+        if (err) {
             sendJSONresponse(res, 400, err);
-        if(order) {
+            return;
+        }
+        if (order) {
             checkAndUpdateLockerAvailable(order.locker)
                 .then(function (locker) {
                     locker.updateAt = Date.now();
                     locker.previousPinCode = locker.pinCode;
-                    locker.pinCode = randomstring.generate({
-                        length: 6,
-                        charset: 'numeric'
-                    });
+                    locker.pinCode = req.body.pinCode;
                     locker.save();
-
                 })
                 .catch(function (err) {
                     sendJSONresponse(res, 400, err);
                 });
+            console.log(order);
             sendJSONresponse(res, 200, order);
             return;
         }

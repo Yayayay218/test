@@ -2,8 +2,20 @@ Locker:
   type: object
   required:
     - name
+    - pinCode
   properties:
+    locker_id:
+      type: string
     name:
       type: string
-    status:
+    serviceUUID:
       type: string
+    charUUID:
+      type: string
+    pinCode:
+      type: string
+    status:
+      type: number
+    available:
+      type: number
+      default: 1

@@ -1,9 +1,12 @@
 module.exports = {
 //    Define Locker Status
-    UNLOCK: 'unLock',
-    LOCK: 'lock',
+    UNLOCK: 0,
+    LOCK: 1,
 //    Define Order Status
-    NEW: 'new',
-    DELIVERED: 'delivered',
-    PICKEDUP: 'pickedUp'
+    NEW: 0,
+    DELIVERED: 1,
+    PICKEDUP: 2,
+//    Order Available
+    BOOKED: 0,
+    AVAILABLE: 1
 };

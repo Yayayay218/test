@@ -3,17 +3,24 @@ var mongoosePaginate = require('mongoose-paginate');
 var autoIncre = require('mongoose-sequence');
 
 var lockersSchema = new mongoose.Schema({
+    locker_id: String,
     name: {
         type: String,
         required: true
     },
     status: {
-        type: String,
-        default: 'unLock'
+        type: Number,
+        default: 0
     },
     updateAt: Date,
-    pinCode: Number,
-    previousPinCode: Number,
+    pinCode: String,
+    previousPinCode: String,
+    available: {
+        type: Number,
+        default: 1
+    },
+    serviceUUID: String,
+    charUUID: String,
     createAt: {
         type: Date,
         default: Date.now()
@@ -21,5 +28,4 @@ var lockersSchema = new mongoose.Schema({
 });
 
 lockersSchema.plugin(mongoosePaginate);
-lockersSchema.plugin(autoIncre, {inc_field: 'locker_id'});
 mongoose.model('Lockers', lockersSchema);
