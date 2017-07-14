@@ -5,7 +5,7 @@ var constant = require('../helpers/lib/constant');
 var Orders = mongoose.model('Orders');
 var Lockers = mongoose.model('Lockers');
 
-var sendJSONresponse = function (res, status, content) {
+var sendJSONResponse = function (res, status, content) {
     res.status(status);
     res.json(content);
 };
@@ -19,7 +19,6 @@ var checkAndUpdateLockerAvailable = function (id) {
             resolve(locker);
         });
     });
-
 };
 //  POST a Order
 module.exports.orderPOST = function (req, res) {
@@ -33,15 +32,15 @@ module.exports.orderPOST = function (req, res) {
                 locker.save();
                 order.save(function (err, order) {
                     if (err)
-                        sendJSONresponse(res, 400, err);
-                    sendJSONresponse(res, 201, order);
+                        sendJSONResponse(res, 400, err);
+                    sendJSONResponse(res, 201, order);
                 });
                 return;
             }
-            sendJSONresponse(res, 400, {message: 'Locker is not available'});
+            sendJSONResponse(res, 400, {message: 'Locker is not available'});
         })
         .catch(function (err) {
-            sendJSONresponse(res, 400, err);
+            sendJSONResponse(res, 400, err);
         });
 };
 
@@ -73,7 +72,7 @@ module.exports.orderGetAll = function (req, res) {
             limit: limit
         }, function (err, order) {
             if (err)
-                sendJSONresponse(res, 404, err);
+                sendJSONResponse(res, 404, err);
             else {
                 var results = {
                     data: order.docs,
@@ -82,7 +81,7 @@ module.exports.orderGetAll = function (req, res) {
                     page: order.page,
                     pages: order.pages
                 };
-                sendJSONresponse(res, 201, results);
+                sendJSONResponse(res, 201, results);
             }
         });
 };
@@ -91,9 +90,9 @@ module.exports.orderGetAll = function (req, res) {
 module.exports.orderGetOne = function (req, res) {
     Orders.findById(req.params.id, function (err, order) {
         if (err)
-            sendJSONresponse(res, 404, err);
+            sendJSONResponse(res, 404, err);
         else
-            sendJSONresponse(res, 200, {'data': order});
+            sendJSONResponse(res, 200, {'data': order});
     }).populate('locker');
 };
 
@@ -103,7 +102,7 @@ module.exports.orderPUT = function (req, res) {
     var data = req.body;
     Orders.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, order) {
         if (err) {
-            sendJSONresponse(res, 400, err);
+            sendJSONResponse(res, 400, err);
             return;
         }
         if (order) {
@@ -112,16 +111,17 @@ module.exports.orderPUT = function (req, res) {
                     locker.updateAt = Date.now();
                     locker.previousPinCode = locker.pinCode;
                     locker.pinCode = req.body.pinCode;
+                    if (data.status === 2)
+                        locker.available = 1;
                     locker.save();
                 })
                 .catch(function (err) {
-                    sendJSONresponse(res, 400, err);
+                    sendJSONResponse(res, 400, err);
                 });
-            console.log(order);
-            sendJSONresponse(res, 200, order);
+            sendJSONResponse(res, 200, order);
             return;
         }
-        sendJSONresponse(res, 404, {message: 'Order Not Fount'});
+        sendJSONResponse(res, 404, {message: 'Order Not Fount'});
     });
 };
 
@@ -130,8 +130,8 @@ module.exports.orderDEL = function (req, res) {
     if (req.params.id)
         Orders.findByIdAndRemove(req.params.id, function (err) {
             if (err)
-                sendJSONresponse(res, 404, err);
+                sendJSONResponse(res, 404, err);
             else
-                sendJSONresponse(res, 204, {'message': 'success'});
+                sendJSONResponse(res, 204, {'message': 'success'});
         });
 };

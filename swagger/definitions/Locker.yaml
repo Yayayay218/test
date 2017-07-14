@@ -18,4 +18,3 @@ Locker:
       type: number
     available:
       type: number
-      default: 1
