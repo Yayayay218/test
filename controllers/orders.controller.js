@@ -100,29 +100,36 @@ module.exports.orderGetOne = function (req, res) {
 module.exports.orderPUT = function (req, res) {
     req.body.updateAt = Date.now();
     var data = req.body;
-    Orders.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, order) {
-        if (err) {
-            sendJSONResponse(res, 400, err);
-            return;
-        }
-        if (order) {
-            checkAndUpdateLockerAvailable(order.locker)
-                .then(function (locker) {
-                    locker.updateAt = Date.now();
-                    locker.previousPinCode = locker.pinCode;
-                    locker.pinCode = req.body.pinCode;
-                    if (data.status === 2)
-                        locker.available = 1;
-                    locker.save();
-                })
-                .catch(function (err) {
-                    sendJSONResponse(res, 400, err);
-                });
-            sendJSONResponse(res, 200, order);
-            return;
-        }
-        sendJSONResponse(res, 404, {message: 'Order Not Fount'});
-    });
+    Orders.findByIdAndUpdate(
+        req.params.id,
+        data,
+        {'new': true})
+        .populate('locker')
+        .exec(function (err, order) {
+            if (err) {
+                sendJSONResponse(res, 400, err);
+                return;
+            }
+            if (order) {
+                checkAndUpdateLockerAvailable(order.locker)
+                    .then(function (locker) {
+                        locker.updateAt = Date.now();
+                        locker.previousPinCode = locker.pinCode;
+                        locker.pinCode = req.body.pinCode;
+                        if (data.status == 2)
+                            locker.available = 1;
+                        locker.save();
+                        order.locker = locker;
+                        sendJSONResponse(res, 200, order);
+                    })
+                    .catch(function (err) {
+                        sendJSONResponse(res, 400, err);
+                    });
+            }
+            else
+                sendJSONResponse(res, 404, {message: 'Order Not Fount'});
+        })
+
 };
 
 //  DEL a Order
