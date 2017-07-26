@@ -5,16 +5,16 @@ RUN useradd --user-group --create-home --shell /bin/false app &&\
 
 ENV HOME=/home/app
 
-COPY package.json $HOME/kouti-backend/
+COPY package.json $HOME/quiz-backend/
 RUN chown -R app:app $HOME/*
 
 USER app
-WORKDIR $HOME/kouti-backend
+WORKDIR $HOME/quiz-backend
 RUN npm install
 
 
 USER root
-COPY . $HOME/kouti-backend
+COPY . $HOME/quiz-backend
 RUN chown -R app:app $HOME/*
 USER app
 

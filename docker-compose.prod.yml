@@ -12,9 +12,9 @@ services:
     # command: bash
     environment:
       NODE_ENV: production
-      DATABASE_URL: "mongodb://mongo:27017/kouti"
+      DATABASE_URL: "mongodb://mongo:27017/quiz"
     volumes:
-      - /home/app/kouti-backend/uploads
+      - /home/app/quiz-backend/uploads
     ports:
       - '3000:3000'
     depends_on:
@@ -34,4 +34,4 @@ services:
     depends_on:
       - node
     ports:
-      - "80:80"
+      - "3000:3000"
