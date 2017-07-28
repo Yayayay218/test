@@ -44,5 +44,4 @@ process.on('SIGTERM', function () {
 
 // BRING IN YOUR SCHEMAS & MODELS
 require('./quizzes');
-require('./orders');
-require('./lockers');
+require('./questions');

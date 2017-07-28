@@ -3,15 +3,16 @@ var mongoosePaginate = require('mongoose-paginate');
 
 var questionSchema = new mongoose.Schema({
     title: String,
-    featureImg: String,
+    featuredImg: String,
     type: Number,
-    answers: [],
+    answers: [String],
     result: Number,
     createdAt: {
         type: Date,
         default: Date.now()
     },
-    updatedAt: Date
+    updatedAt: Date,
+    quiz: {type: Schema.Types.ObjectId, ref: 'Quizzes'}
 });
 
 questionSchema.plugin(mongoosePaginate);

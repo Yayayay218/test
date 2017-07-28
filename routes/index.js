@@ -2,21 +2,25 @@ var express = require('express');
 
 var router = express.Router();
 
-var ctrlLocker = require('../controllers/lockers.controller');
-var ctrlOrder = require('../controllers/orders.controller');
+var ctrlQuiz = require('../controllers/quiz.controller');
+var ctrlQuestion = require('../controllers/question.controller');
+var ctrlFile = require('../controllers/file.controller');
 
-//  Locker APIs
-router.get('/lockers', ctrlLocker.lockerGetAll);
-router.get('/lockers/:id', ctrlLocker.lockerGetOne);
-router.post('/lockers', ctrlLocker.lockerPOST);
-router.put('/lockers/:id', ctrlLocker.lockerPUT);
-router.delete('/lockers/:id', ctrlLocker.lockerDEL);
+//  Quiz APIs
+router.post('/quizzes', ctrlQuiz.quizPOST);
+router.get('/quizzes', ctrlQuiz.quizGetAll);
+router.get('/quizzes/:id', ctrlQuiz.quizGetOne);
+router.put('/quizzes/:id', ctrlQuiz.quizPUT);
+router.delete('/quizzes/:id', ctrlQuiz.quizDEL);
 
-//  Order APIs
-router.get('/orders', ctrlOrder.orderGetAll);
-router.get('/orders/:id', ctrlOrder.orderGetOne);
-router.post('/orders', ctrlOrder.orderPOST);
-router.put('/orders/:id', ctrlOrder.orderPUT);
-router.delete('/orders/:id', ctrlOrder.orderDEL);
+//  Question APIs
+router.post('/questions', ctrlQuestion.questionPOST);
+router.get('/questions', ctrlQuestion.questionGetAll);
+router.get('/questions/:id', ctrlQuestion.questionGetOne);
+router.put('/questions/:id', ctrlQuestion.questionPUT);
+router.delete('/questions/:id', ctrlQuestion.questionDEL);
+
+//  File Upload
+router.post('/files', ctrlFile.uploadFile);
 
 module.exports = router;

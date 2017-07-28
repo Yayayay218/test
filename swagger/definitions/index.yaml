@@ -1,4 +1,4 @@
-Locker:
-  $ref: ./Locker.yaml#/Locker
-Order:
-  $ref: ./Order.yaml#/Order
+Quiz:
+  $ref: ./Quiz.yaml#/Quiz
+Question:
+  $ref: ./Question.yaml#/Question

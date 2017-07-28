@@ -1,8 +1,10 @@
-/lockers:
-  $ref: locker.yaml#/lockers
-/lockers/{id}:
-  $ref: locker.yaml#/lockerById
-/orders:
-  $ref: order.yaml#/orders
-/orders/{id}:
-  $ref: order.yaml#/orderById
+/quizzes:
+  $ref: quiz.yaml#/quizzes
+/quizzes/{id}:
+  $ref: quiz.yaml#/quizById
+/questions:
+  $ref: question.yaml#/questions
+/questions/{id}:
+  $ref: question.yaml#/questionById
+/files:
+  $ref: file.yaml#/files

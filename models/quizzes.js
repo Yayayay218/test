@@ -5,7 +5,6 @@ var quizSchema = new mongoose.Schema({
     title: String,
     featuredImg: String,
     description: String,
-    result: String,
     createdAt: {
         type: Date,
         default: Date.now()
