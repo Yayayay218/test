@@ -21,9 +21,11 @@ import {
     ImageInput,
     ImageField,
     FormTab,
-    TabbedForm
+    TabbedForm,
+    NullableBooleanInput
 } from 'admin-on-rest';
 
+import EmbeddedManyInput from './AddNewAnswerButton'
 import {required, minValue, maxValue} from 'admin-on-rest';
 
 export const QuestionList = (props) => (
@@ -35,44 +37,47 @@ export const QuestionList = (props) => (
             {/*<TextField source="quiz.title" label="Quiz" />*/}
             <TextField source="title" label="Question's Name"/>
             <TextField source="type" label="Question's Type"/>
-            <TextField source="result" label="Question's Result"/>
+            {/*<TextField source="result" label="Question's Result"/>*/}
             <TextField source="createdAt" label="Created At"/>
             <TextField source="updatedAt" label="Updated At"/>
-            <EditButton />
-            <DeleteButton />
+            <EditButton/>
+            <DeleteButton/>
         </Datagrid>
     </List>
 );
 
-export const QuestionCreate = (props) => (
-    <Create {...props}>
-        <TabbedForm>
-            <FormTab label="Information">
-                <TextInput source="title" validate={[required]}/>
-                {/*<TextInput source="type" validate={[required]}/>*/}
-                <NumberInput source="type" validate={[required, minValue(0), maxValue(1)]}/>
+//export const QuestionCreate = (props) =>  {return ()}
+export const QuestionCreate = (props) => {
+    return (
+        <Create {...props}>
+            <TabbedForm>
+                <FormTab label="Information">
+                    <TextInput source="title" validate={[required]}/>
+                    {/*<TextInput source="type" validate={[required]}/>*/}
+                    <NumberInput source="type" validate={[required, minValue(0), maxValue(1)]}/>
 
-                <ReferenceInput label="Quiz" source="quiz" reference="quizzes" validate={[required]}
-                                allowEmpty>
-                    <SelectInput optionText="title"/>
-                </ReferenceInput>
-            </FormTab>
+                    <ReferenceInput label="Quiz" source="quiz" reference="quizzes" validate={[required]}
+                                    allowEmpty>
+                        <SelectInput optionText="title"/>
+                    </ReferenceInput>
+                </FormTab>
 
-            <FormTab label="Answer">
-                <TextInput source="answers" validate={[required]}/>
-                <TextInput source="answers" validate={[required]}/>
-                <TextInput source="answers" validate={[required]}/>
-                <TextInput source="result" validate={[required]}/>
-            </FormTab>
+                <FormTab label="Answer">
+                    <EmbeddedManyInput source="answers">
+                        <TextInput source="content" label="Answer"/>
+                        <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
+                    </EmbeddedManyInput>
+                </FormTab>
 
-            <FormTab label="Featured Image">
-                <ImageInput source="file" label="Featured Image" accept="image/*">
-                    <ImageField source="src" title="title"/>
-                </ImageInput>
-            </FormTab>
-        </TabbedForm>
-    </Create>
-);
+                <FormTab label="Featured Image">
+                    <ImageInput source="file" label="Featured Image" accept="image/*">
+                        <ImageField source="src" title="title"/>
+                    </ImageInput>
+                </FormTab>
+            </TabbedForm>
+        </Create>
+    );
+};
 
 export const ImageFormatter = v => {
     // console.log("====LogoFormatter=====: ", v);
@@ -94,11 +99,16 @@ const QuestionTitle = ({record}) => {
     return <span>Question {record ? `"${record.title}"` : ''}</span>;
 };
 export const QuestionEdit = (props) => (
-    <Edit title={<QuestionTitle />} {...props}>
+    <Edit title={<QuestionTitle/>} {...props}>
         <TabbedForm>
             <FormTab label="Information">
                 <TextInput source="title" validate={[required]}/>
                 <NumberInput source="type" validate={[required, minValue(1), maxValue(10)]}/>
+
+                <EmbeddedManyInput source="answers">
+                    <TextInput source="content" label="Answer"/>
+                    <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
+                </EmbeddedManyInput>
 
                 <ReferenceInput label="Quiz" source="quiz._id" reference="quizzes" allowEmpty>
                     <SelectInput optionText="title" validate={[required]}/>

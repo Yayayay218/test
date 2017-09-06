@@ -13,6 +13,10 @@ var YAML 		= require('js-yaml');
 
 require('./models/db');
 
+var cors = require('cors'); // call the cors to fix access control bug.
+
+app.use(cors());
+
 var routesApi = require('./routes/index');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -27,7 +27,7 @@ const uploadFile = (params) => {
 
 const addUploadCapabilities = requestHandler => (type, resource, params) => {
     if ((type === 'UPDATE' || type === "CREATE") &&
-        (resource === 'quizzes' || resource === 'questions')) {
+        (resource === 'quizzes' || resource === 'questions' || resource === 'results')) {
         console.log("addUploadCapabilities: ", params.data);
         if (Object.prototype.toString.call(params.data.file) === '[object Array]') {
             console.log("addUploadCapabilities length: ", params.data.file.length);

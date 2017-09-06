@@ -6,6 +6,7 @@ import {
 
 import {QuizList, QuizCreate, QuizEdit} from './quizzes/index';
 import {QuestionList, QuestionCreate, QuestionEdit} from './questions/index';
+import {ResultList, ResultEdit, ResultCreate} from "./results/index"
 
 // import {Dashboard} from './dashboard';
 
@@ -29,6 +30,7 @@ render(
     <Admin restClient={uploadCapableClient} title="My Dashboard">
         <Resource name="quizzes" list={QuizList} edit={QuizEdit} create={QuizCreate} remove={Delete}/>
         <Resource name="questions" list={QuestionList} edit={QuestionEdit} create={QuestionCreate} remove={Delete}/>
+        <Resource name="results" list={ResultList} edit={ResultEdit} create={ResultCreate} remove={Delete}/>
     </Admin>,
     document.getElementById('root')
 );

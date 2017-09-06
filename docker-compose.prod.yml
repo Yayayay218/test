@@ -15,6 +15,8 @@ services:
       DATABASE_URL: "mongodb://mongo:27017/quiz"
     volumes:
       - /home/app/quiz-backend/uploads
+      - /root/opt/quiz-frontend:/home/app/quiz-frontend
+    command: npm start
     ports:
       - '3000:3000'
     depends_on:
@@ -34,4 +36,4 @@ services:
     depends_on:
       - node
     ports:
-      - "3000:3000"
+      - "80:80"

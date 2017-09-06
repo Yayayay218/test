@@ -5,6 +5,8 @@ RUN useradd --user-group --create-home --shell /bin/false app &&\
 
 ENV HOME=/home/app
 
+WORKDIR $HOME/quiz-frontend
+
 COPY package.json $HOME/quiz-backend/
 RUN chown -R app:app $HOME/*
 
@@ -19,3 +21,4 @@ RUN chown -R app:app $HOME/*
 USER app
 
 CMD ["pm2", "start", "--no-daemon", "processes.json"]
+

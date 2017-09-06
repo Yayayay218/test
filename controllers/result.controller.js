@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise;
 var HTTPStatus = require('../helpers/lib/http_status');
 var constant = require('../helpers/lib/constant');
 
-var Quizzes = mongoose.model('Quizzes');
+var Results = mongoose.model('Results');
 
 var sendJSONResponse = function (res, status, content) {
     res.status(status);
@@ -15,7 +15,7 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {
-        cb(null, 'uploads/quiz')
+        cb(null, 'uploads/result')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -26,8 +26,8 @@ var upload = multer({
     storage: storage
 }).single('file');
 
-//  POST a quiz
-module.exports.quizPOST = function (req, res) {
+//  POST a result
+module.exports.resultPOST = function (req, res) {
     upload(req, res, function (err) {
         if (err)
             return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
@@ -36,8 +36,8 @@ module.exports.quizPOST = function (req, res) {
             });
         var data = req.body;
 
-        var quiz = new Quizzes(data);
-        quiz.save(function (err, quiz) {
+        var result = new Results(data);
+        result.save(function (err, result) {
             if (err)
                 return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                     success: false,
@@ -45,85 +45,77 @@ module.exports.quizPOST = function (req, res) {
                 });
             return sendJSONResponse(res, HTTPStatus.CREATED, {
                 success: true,
-                message: "Add a new quiz successful!",
-                data: quiz
+                message: "Add a new result successful!",
+                data: result
             })
         })
     });
 };
 
-//  GET all quizzes
-module.exports.quizGetAll = function (req, res) {
+//  GET all results
+module.exports.resultGetAll = function (req, res) {
     var query = req.query || {};
     const id = req.query.id;
     delete req.query.id;
+    const quiz = req.query.quiz;
+    delete req.query.quiz;
     if (id)
         query = {
             "_id": {$in: id}
         };
+    else if (quiz)
+        query = {
+            "quiz": {$in: quiz}
+        };
     else
         query = {};
-    Quizzes.paginate(
+    Results.paginate(
         query,
         {
             sort: req.query.sort,
-            populate: 'questions',
+            populate: 'quiz',
             page: Number(req.query.page),
             limit: Number(req.query.limit)
-        }, function (err, quiz) {
+        }, function (err, result) {
             if (err)
                 return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                     success: false,
                     message: err
                 });
             var results = {
-                data: quiz.docs,
-                total: quiz.total,
-                limit: quiz.limit,
-                page: quiz.page,
-                pages: quiz.pages
+                data: result.docs,
+                total: result.total,
+                limit: result.limit,
+                page: result.page,
+                pages: result.pages
             };
             return sendJSONResponse(res, HTTPStatus.OK, results);
         }
     )
 };
-module.exports.quizGetOne = function (req, res) {
-    Quizzes.findById(req.params.id, function (err, quiz) {
-        if (err)
-            return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-                success: false,
-                message: err
-            });
-        if (!quiz)
-            return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
-                success: false,
-                message: 'Quiz not founded'
-            })
-        return sendJSONResponse(res, HTTPStatus.OK, {
-            success: true,
-            data: quiz
-        })
-    })
-};
 
-//  DEL a quizz
-module.exports.quizDEL = function (req, res) {
-    if (req.params.id)
-        Quizzes.findByIdAndRemove(req.params.id, function (err) {
+module.exports.resultGetOne = function (req, res) {
+    Results.findById(req.params.id)
+        .populate('quiz')
+        .exec(function (err, result) {
             if (err)
-                return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
+                return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                     success: false,
                     message: err
                 });
-            return sendJSONResponse(res, HTTPStatus.NO_CONTENT, {
-                success: true,
-                message: 'Quiz was deleted'
+            if (!result)
+                return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
+                    success: false,
+                    message: 'result not founded'
+                });
+            return sendJSONResponse(res, HTTPStatus.OK, {
+                success: false,
+                data: result
             })
-        });
+        })
 };
-
-//  PUT a quiz
-module.exports.quizPUT = function (req, res) {
+//  PUT a result
+module.exports.resultPUT = function (req, res) {
     req.body.updatedAt = Date.now();
 
     upload(req, res, function (err) {
@@ -133,23 +125,38 @@ module.exports.quizPUT = function (req, res) {
                 message: err
             });
         var data = req.body;
-        Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
+        Results.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, result) {
             if (err)
                 return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                     success: false,
                     message: err
                 });
-            if (!quiz)
+            if (!result)
                 return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
                     success: false,
-                    message: "Quiz's not founded"
+                    message: "result's not founded"
                 });
             return sendJSONResponse(res, HTTPStatus.OK, {
                 success: true,
-                message: 'Update quiz successful!',
-                data: quiz
+                message: 'Update result successful!',
+                data: result
             })
         })
     });
+};
 
+//  DEL a result
+module.exports.resultDEL = function (req, res) {
+    if (req.params.id)
+        Results.findByIdAndRemove(req.params.id, function (err) {
+            if (err)
+                return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
+                    success: false,
+                    message: err
+                });
+            return sendJSONResponse(res, HTTPStatus.NO_CONTENT, {
+                success: true,
+                message: 'result was deleted'
+            })
+        });
 };

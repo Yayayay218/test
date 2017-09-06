@@ -38,7 +38,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
 
             }
             case GET_ONE: {
-                url = `${apiUrl}/${resource}?id=${params.id}`;
+                url = `${apiUrl}/${resource}/${params.id}`;
                 break;
             }
             //

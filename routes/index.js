@@ -4,6 +4,7 @@ var router = express.Router();
 
 var ctrlQuiz = require('../controllers/quiz.controller');
 var ctrlQuestion = require('../controllers/question.controller');
+var ctrlResult = require('../controllers/result.controller');
 var ctrlFile = require('../controllers/file.controller');
 
 //  Quiz APIs
@@ -19,6 +20,13 @@ router.get('/questions', ctrlQuestion.questionGetAll);
 router.get('/questions/:id', ctrlQuestion.questionGetOne);
 router.put('/questions/:id', ctrlQuestion.questionPUT);
 router.delete('/questions/:id', ctrlQuestion.questionDEL);
+
+//  Result APIs
+router.post('/results', ctrlResult.resultPOST);
+router.get('/results', ctrlResult.resultGetAll);
+router.get('/results/:id', ctrlResult.resultGetOne);
+router.put('/results/:id', ctrlResult.resultPUT);
+router.delete('/results/:id', ctrlResult.resultDEL);
 
 //  File Upload
 router.post('/files', ctrlFile.uploadFile);

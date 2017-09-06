@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var mongoosePaginate = require('mongoose-paginate');
 
 var quizSchema = new mongoose.Schema({
@@ -9,7 +9,8 @@ var quizSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    updatedAt: Date
+    updatedAt: Date,
+    questions: [{type: Schema.Types.ObjectId, ref: 'Questions'}]
 });
 
 quizSchema.plugin(mongoosePaginate);

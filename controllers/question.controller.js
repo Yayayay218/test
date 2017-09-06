@@ -4,6 +4,7 @@ var HTTPStatus = require('../helpers/lib/http_status');
 var constant = require('../helpers/lib/constant');
 
 var Questions = mongoose.model('Questions');
+var Quizzes = mongoose.model('Quizzes');
 
 var sendJSONResponse = function (res, status, content) {
     res.status(status);
@@ -57,9 +58,15 @@ module.exports.questionGetAll = function (req, res) {
     var query = req.query || {};
     const id = req.query.id;
     delete req.query.id;
+    const quiz = req.query.quiz;
+    delete req.query.quiz;
     if (id)
         query = {
             "_id": {$in: id}
+        };
+    else if (quiz)
+        query = {
+            "quiz": {$in: quiz}
         };
     else
         query = {};
@@ -92,12 +99,12 @@ module.exports.questionGetOne = function (req, res) {
     Questions.findById(req.params.id)
         .populate('quiz')
         .exec(function (err, question) {
-            if(err)
+            if (err)
                 return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                     success: false,
                     message: err
                 });
-            if(!question)
+            if (!question)
                 return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
                     success: false,
                     message: 'Question not founded'
