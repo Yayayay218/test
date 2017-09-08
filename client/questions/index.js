@@ -66,6 +66,9 @@ export const QuestionCreate = (props) => {
                     <EmbeddedManyInput source="answers">
                         <TextInput source="content" label="Answer"/>
                         <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
+                        {/*<ImageInput source="photos" label="Answer's Image" accept="image/*">*/}
+                            {/*<ImageField source="src" title="title"/>*/}
+                        {/*</ImageInput>*/}
                     </EmbeddedManyInput>
                 </FormTab>
 

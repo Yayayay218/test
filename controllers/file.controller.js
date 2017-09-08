@@ -18,9 +18,26 @@ var storage = multer.diskStorage({ //multers disk storage settings
 var upload = multer({
     storage: storage
 }).single('file');
+var photos = multer({storage: storage}).array('photos', 5);
+
 
 exports.uploadFile = function (req, res) {
     upload(req, res, function (err) {
+        if (err) {
+            console.log("error:" + err);
+            sendJSONresponse(res, 400, {message: 'fail'});
+        }
+        if (!req.file) {
+            sendJSONresponse(res, 404, {message: 'fail'})
+        }
+        var url = req.protocol + '://' + req.get('host') + '/' + req.file.path;
+        console.log(url);
+        sendJSONresponse(res, 200, url);
+    })
+};
+
+exports.uploadPhotos = function (req, res) {
+    photos(req, res, function (err) {
         if (err) {
             console.log("error:" + err);
             sendJSONresponse(res, 400, {message: 'fail'});

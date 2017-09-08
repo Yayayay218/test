@@ -16,6 +16,7 @@ require('./models/db');
 var cors = require('cors'); // call the cors to fix access control bug.
 
 app.use(cors());
+app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
 
 var routesApi = require('./routes/index');
 // view engine setup
@@ -33,6 +34,8 @@ app.use(cookieParser());
 
 app.use(paginate.middleware(10, 50)); // limit=10,  maxLimit=50
 
+app.use(express.static(path.join(__dirname, 'quiz-frontend', 'app')));
+
 app.use(express.static(path.join(__dirname, 'node_modules/swagger-ui-express/static')));
 app.use(express.static(path.join(__dirname, 'views')));
 
@@ -40,9 +43,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/uploads/media', express.static(path.join(__dirname, 'uploads/media')));
 
-app.get('/', function (req, res) {
-    res.json({message: "Welcome to our Quiz!"});
-});
+// app.get('/', function (req, res) {
+//     res.json({message: "Welcome to our Quiz!"});
+// });
 
 var optionsRef 	= {
     filter: ['relative', 'remote'],
