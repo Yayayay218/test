@@ -21,7 +21,8 @@ import {
 } from 'admin-on-rest';
 
 import {required} from 'admin-on-rest'
-
+import FileUploader from './ImageUpload'
+import Accept from './UploadImage'
 
 export const QuizList = (props) => (
     <List {...props}>
@@ -53,38 +54,43 @@ export const ImageParser = v => {
     return v;
 };
 
-export const QuizCreate = (props) => (
-    <Create {...props}>
-        <TabbedForm>
-            <FormTab label="Quiz's Information">
-                <TextInput source="title" validate={[required]}/>
-                <TextInput source="description" validate={[required]}/>
-            </FormTab>
-            <FormTab label="Featured Image">
-                <ImageInput source="file" label="Featured Image" accept="image/*">
-                    <ImageField source="src" title="title"/>
-                </ImageInput>
-            </FormTab>
-        </TabbedForm>
-    </Create>
-);
+export const QuizCreate = (props) => {
+    return (
+        <Create {...props}>
+            <TabbedForm>
+                <FormTab label="Quiz's Information">
+                    <TextInput source="title" validate={[required]}/>
+                    <TextInput source="description" validate={[required]}/>
+                    <Accept source="image"/>
+                </FormTab>
+                <FormTab label="Featured Image">
+                    <ImageInput source="file" label="Featured Image" accept="image/*">
+                        <ImageField source="src" title="title"/>
+                    </ImageInput>
+                </FormTab>
+            </TabbedForm>
+        </Create>
+    )
+};
 const QuizTitle = ({record}) => {
     return <span>Quiz {record ? `"${record.title}"` : ''}</span>;
 };
-export const QuizEdit = (props) => (
-    <Edit title={<QuizTitle/>} {...props}>
-        <TabbedForm>
-            <FormTab label="Quiz's Information">
-                <DisabledInput label="Quiz Id" source="id"/>
-                <TextInput source="title" label="Quiz's Title" validate={[required]}/>
-                <TextInput source="description" label="Quiz's Description"/>
-            </FormTab>
-            <FormTab label="Featured Image">
-                <ImageField source='featuredImg' title='title'/>
-                <ImageInput source="file" label="Featured Image" accept="image/*">
-                    <ImageField source="src" title="title"/>
-                </ImageInput>
-            </FormTab>
-        </TabbedForm>
-    </Edit>
-);
+export const QuizEdit = (props) => {
+    return (
+        <Edit title={<QuizTitle/>} {...props}>
+            <TabbedForm>
+                <FormTab label="Quiz's Information">
+                    <DisabledInput label="Quiz Id" source="id"/>
+                    <TextInput source="title" label="Quiz's Title" validate={[required]}/>
+                    <TextInput source="description" label="Quiz's Description"/>
+                </FormTab>
+                <FormTab label="Featured Image">
+                    <ImageField source='featuredImg' title='title'/>
+                    <ImageInput source="file" label="Featured Image" accept="image/*">
+                        <ImageField source="src" title="title"/>
+                    </ImageInput>
+                </FormTab>
+            </TabbedForm>
+        </Edit>
+    )
+};

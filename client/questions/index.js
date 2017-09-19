@@ -22,10 +22,11 @@ import {
     ImageField,
     FormTab,
     TabbedForm,
-    NullableBooleanInput
+    NullableBooleanInput,
 } from 'admin-on-rest';
 
 import EmbeddedManyInput from './AddNewAnswerButton'
+import SelectTypeAnswer from './answerForm'
 import {required, minValue, maxValue} from 'admin-on-rest';
 
 export const QuestionList = (props) => (
@@ -63,13 +64,7 @@ export const QuestionCreate = (props) => {
                 </FormTab>
 
                 <FormTab label="Answer">
-                    <EmbeddedManyInput source="answers">
-                        <TextInput source="content" label="Answer"/>
-                        <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
-                        {/*<ImageInput source="photos" label="Answer's Image" accept="image/*">*/}
-                            {/*<ImageField source="src" title="title"/>*/}
-                        {/*</ImageInput>*/}
-                    </EmbeddedManyInput>
+                    <SelectTypeAnswer/>
                 </FormTab>
 
                 <FormTab label="Featured Image">
@@ -99,30 +94,38 @@ export const ImageParser = v => {
 };
 
 const QuestionTitle = ({record}) => {
+    console.log(record);
     return <span>Question {record ? `"${record.title}"` : ''}</span>;
 };
-export const QuestionEdit = (props) => (
-    <Edit title={<QuestionTitle/>} {...props}>
-        <TabbedForm>
-            <FormTab label="Information">
-                <TextInput source="title" validate={[required]}/>
-                <NumberInput source="type" validate={[required, minValue(1), maxValue(10)]}/>
-
-                <EmbeddedManyInput source="answers">
-                    <TextInput source="content" label="Answer"/>
-                    <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
-                </EmbeddedManyInput>
-
-                <ReferenceInput label="Quiz" source="quiz._id" reference="quizzes" allowEmpty>
-                    <SelectInput optionText="title" validate={[required]}/>
-                </ReferenceInput>
-            </FormTab>
-            <FormTab label="Featured Image">
-                <ImageField source='featuredImg' title='title'/>
-                <ImageInput source="file" label="Featured Image" accept="image/*">
-                    <ImageField source="src" title="title"/>
-                </ImageInput>
-            </FormTab>
-        </TabbedForm>
-    </Edit>
-);
+export const QuestionEdit = (props) => {
+    // console.log(props);
+    return (
+        <Edit title={<QuestionTitle/>} {...props}>
+            <TabbedForm>
+                <FormTab label="Information">
+                    <TextInput source="title" validate={[required]}/>
+                    <NumberInput source="type" validate={[required, minValue(1), maxValue(10)]}/>
+                    <ReferenceInput label="Quiz" source="quiz._id" reference="quizzes">
+                        <SelectInput optionText="title" validate={[required]}/>
+                    </ReferenceInput>
+                </FormTab>
+                <FormTab label="answers">
+                    <EmbeddedManyInput source="answers">
+                        {/*<TextInput source="content" label="Answer"/>*/}
+                        {/*<NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>*/}
+                        <ImageField source='img' title='title'/>
+                        {/*<ImageInput source="photos" label="Answer's Image" accept="image/*" validate={[required]}>*/}
+                            {/*<ImageField source="src" title="title"/>*/}
+                        {/*</ImageInput>*/}
+                    </EmbeddedManyInput>
+                </FormTab>
+                <FormTab label="Featured Image">
+                    <ImageField source='featuredImg' title='title'/>
+                    <ImageInput source="file" label="Featured Image" accept="image/*">
+                        <ImageField source="src" title="title"/>
+                    </ImageInput>
+                </FormTab>
+            </TabbedForm>
+        </Edit>
+    )
+};

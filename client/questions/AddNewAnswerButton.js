@@ -1,6 +1,6 @@
 import FlatButton from 'material-ui/FlatButton';
-import React, { Component } from 'react';
-import { FieldArray, Field } from 'redux-form';
+import React, {Component} from 'react';
+import {FieldArray, Field} from 'redux-form';
 import PropTypes from 'prop-types';
 
 import ContentCreateIcon from 'material-ui/svg-icons/content/create';
@@ -9,39 +9,42 @@ import ActionDeleteIcon from 'material-ui/svg-icons/action/delete';
 export class EmbeddedManyInput extends Component {
     constructor(props) {
         super(props);
-        const { source } = props;
+        const {source} = props;
     }
 
-    renderList = ({ fields }) => {
-        const { children } = this.props;
+    renderList = ({fields}) => {
+        const {children} = this.props;
+        // console.log('err', children);
         return (
-            <div style={{ margin: '1em' }}>
+            <div style={{margin: '1em'}}>
                 {fields.map((member, index) =>
-                    <div key={index} style={{ display: 'inline-block', verticalAlign: 'bottom' }}>
-                        <div style={{ padding: '0 1em 1em 1em' }}>
+                    <div key={index} style={{display: 'inline-block', verticalAlign: 'bottom'}}>
+                        <div style={{padding: '0 1em 1em 1em'}}>
                             {React.Children.map(children, input => input && (
-                                <div key={input.props.source} className={`aor-input-${input.props.source}`} style={input.props.style}>
-                                    <Field {...input.props} name={`${member}.${input.props.source}`} component={input.type} />
+                                <div key={input.props.source} className={`aor-input-${input.props.source}`}
+                                     style={input.props.style}>
+                                    <Field {...input.props} name={`${member}.${input.props.source}`}
+                                           component={input.type}/>
                                 </div>
                             ))}
                         </div>
                         <FlatButton
                             label="Remove"
-                            icon={<ActionDeleteIcon />}
-                            onClick={() => fields.remove(index)} />
+                            icon={<ActionDeleteIcon/>}
+                            onClick={() => fields.remove(index)}/>
                     </div>
                 )}
-                <FlatButton icon={<ContentCreateIcon />} label="Add" onClick={() => fields.push({})} />
+                <FlatButton icon={<ContentCreateIcon/>} label="Add" onClick={() => fields.push({})}/>
             </div>
         )
     };
 
 
     render() {
-        const { input, resource, label, source, allowEmpty, basePath, onChange, children, meta } = this.props;
+        const {input, resource, label, source, allowEmpty, basePath, onChange, children, meta} = this.props;
 
         return (
-            <FieldArray name={source} component={this.renderList} />
+            <FieldArray name={source} component={this.renderList} isRefresh={this.props.isRefresh}/>
         )
     }
 }

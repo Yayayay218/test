@@ -30,5 +30,6 @@ router.delete('/results/:id', ctrlResult.resultDEL);
 
 //  File Upload
 router.post('/files', ctrlFile.uploadFile);
+router.post('/photos', ctrlFile.uploadPhotos);
 
 module.exports = router;

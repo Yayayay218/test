@@ -1,69 +1,76 @@
-// import React, {Component} from 'react';
-// import {ReactDOM} from 'react-dom';
-//
-// class AnswerForm extends React {
-//     constructor() {
-//         super();
-//         this.state = {
-//             answer: '',
-//             answers: [{ answer: '' }],
-//         };
-//     }
-//
-//     handleAnswerChange = (evt) => {
-//         this.setState({ answer: evt.target.value });
-//     }
-//
-//     handleAnswerNameChange = (idx) => (evt) => {
-//         const newAnswers = this.state.answers.map((answer, sidx) => {
-//             if (idx !== sidx) return answer;
-//             return { ...answer, answer: evt.target.value };
-//         });
-//
-//         this.setState({ answers: newAnswers });
-//     }
-//
-//     handleSubmit = (evt) => {
-//         const { answer, answers } = this.state;
-//         // alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
-//     }
-//
-//     handleAddAnswer = () => {
-//         this.setState({ answers: this.state.answers.concat([{ answer: '' }]) });
-//     }
-//
-//     handleRemoveAnswer = (idx) => () => {
-//         this.setState({ answers: this.state.answers.filter((s, sidx) => idx !== sidx) });
-//     }
-//
-//     render () {
-//         return (
-//             <form onSubmit={this.handleSubmit}>
-//                 <input
-//                     type="text"
-//                     placeholder="Company name, e.g. Magic Everywhere LLC"
-//                     value={this.state.answer}
-//                     onChange={this.handleAnswerChange}
-//                 />
-//
-//                 <h4>Shareholders</h4>
-//
-//                 {this.state.answers.map((answer, idx) => (
-//                     <div className="shareholder">
-//                         <input
-//                             type="text"
-//                             placeholder={`answer #${idx + 1} answer`}
-//                             value={answer.name}
-//                             onChange={this.handleAnswerNameChange(idx)}
-//                         />
-//                         <button type="button" onClick={this.handleRemoveAnswer(idx)} className="small">-</button>
-//                     </div>
-//                 ))}
-//                 <button type="button" onClick={this.handleAddAnswer} className="small">Add Shareholder</button>
-//                 <button>Incorporate</button>
-//             </form>
-//         )
-//     }
-// }
-//
-// ReactDOM.render(<AnswerForm />, document.body);
+import React, {Component} from 'react';
+import {
+    Create,
+    Edit,
+    List,
+    SimpleForm,
+    DisabledInput,
+    TextInput,
+    DateInput,
+    NumberInput,
+    LongTextInput,
+    ReferenceField,
+    ReferenceManyField,
+    ReferenceInput,
+    Datagrid,
+    TextField,
+    DateField,
+    EditButton,
+    DeleteButton,
+    SelectInput,
+    ImageInput,
+    ImageField,
+    FormTab,
+    TabbedForm,
+    NullableBooleanInput,
+} from 'admin-on-rest';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+import EmbeddedManyInput from './AddNewAnswerButton'
+import {required, minValue, maxValue} from 'admin-on-rest';
+
+const styles = {
+    customWidth: {
+        width: 150,
+    },
+};
+
+/**
+ * `SelectField` is implemented as a controlled component,
+ * with the current selection set through the `value` property.
+ * The `SelectField` can be disabled with the `disabled` property.
+ */
+export default class SelectTypeAnswer extends Component {
+    state = {
+        value: 1,
+    };
+
+    handleChange = (event, index, value) => this.setState({value});
+    // componentWillUpdate(nextState, nextProps) {
+    //     console.log(nextState)
+    // }
+
+    render() {
+
+        return (
+            <div>
+                <SelectField
+                    floatingLabelText="Type"
+                    value={this.state.value}
+                    onChange={this.handleChange.bind(this)}
+                >
+                    <MenuItem value={1} primaryText="Text"/>
+                    <MenuItem value={2} primaryText="Image"/>
+                </SelectField>
+                <EmbeddedManyInput isRefresh={this.state.value} source="answers">
+                    {this.state.value == 1 && <TextInput source="content" label="Answer"/>}
+                    {this.state.value == 1 && <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>}
+                    {this.state.value == 2 && <ImageInput source="photos" label="Answer's Image" accept="image/*" value={2} validate={[required]}>
+                        <ImageField source="src" title="title"/>
+                    </ImageInput>}
+                </EmbeddedManyInput>
+            </div>
+        );
+    }
+}

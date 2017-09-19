@@ -25,11 +25,15 @@ var storage = multer.diskStorage({ //multers disk storage settings
 });
 var upload = multer({
     storage: storage
-}).single('file');
+});
+var cpUpload = upload.fields([
+    {name: 'file', maxCount: 1},
+    {name: 'photos', maxCount: 8}
+]);
 
 //  POST a question
 module.exports.questionPOST = function (req, res) {
-    upload(req, res, function (err) {
+    cpUpload(req, res, function (err) {
         if (err)
             return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                 success: false,
@@ -119,7 +123,7 @@ module.exports.questionGetOne = function (req, res) {
 module.exports.questionPUT = function (req, res) {
     req.body.updatedAt = Date.now();
 
-    upload(req, res, function (err) {
+    cpUpload(req, res, function (err) {
         if (err)
             return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
                 success: false,

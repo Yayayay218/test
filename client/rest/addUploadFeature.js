@@ -27,32 +27,45 @@ const uploadFile = (params) => {
 
 const uploadAnswer = (params) => {
     console.log("Promise uploadFile: ", params);
-    return new Promise((resolve, reject) => {
-        if (params.data.answers[0].file && params.data.answers[0].file[0].rawFile instanceof File) {
-            const photos = params.data.answers.filter(photo => photo.file[0].rawFile instanceof File);
-            const formData = new FormData();
-            photos.map(photo => formData.append('photos', photo));
-            // console.log("addUploadCapabilities photos: ", photos);
-            return fetch('/api/files', {
-                method: 'post',
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(photos => {
-                    params = {
-                        ...params,
-                        data: {
-                            ...params.data,
-                            answers:{img: photos}
-                        }
-                    };
-                    console.log(params);
-                    resolve(params);
+        return new Promise((resolve, reject) => {
+            if (params.data.answers && params.data.answers[0].photos[0].rawFile instanceof File) {
+                const tmp = [];
+                params.data.answers.forEach(e => {
+                    tmp.push(e.photos[0].rawFile);
                 });
-        } else {
-            resolve(params);
-        }
-    });
+                const photos = tmp.filter(photo => {
+                        return photo instanceof File
+                    }
+                );
+                if (photos.length) {
+                    const formData = new FormData();
+                    photos.map(photo => {
+                        return formData.append('photos', photo)
+                    });
+                    return fetch('/api/photos', {
+                        method: 'post',
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(photos => {
+                            params = {
+                                ...params,
+                                data: {
+                                    ...params.data,
+                                    answers: photos.map((photo) => {
+                                        return {img: photo}
+                                    }),
+                                }
+                            };
+                            resolve(params);
+                        });
+                } else {
+                    resolve(params);
+                }
+            } else {
+                resolve(params);
+            }
+        });
 };
 
 const addUploadCapabilities = requestHandler => (type, resource, params) => {

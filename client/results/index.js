@@ -85,8 +85,7 @@ export const ResultEdit = (props) => (
             <FormTab label="Result's Information">
                 <DisabledInput label="Result Id" source="id"/>
                 <TextInput source="title" label="Result's Title" validate={[required]}/>
-                <ReferenceInput label="Quiz" source="quiz._id" reference="quizzes" validate={[required]}
-                                allowEmpty>
+                <ReferenceInput label="Quiz" source="quiz._id" reference="quizzes" validate={[required]}>
                     <SelectInput optionText="title"/>
                 </ReferenceInput>
             </FormTab>
