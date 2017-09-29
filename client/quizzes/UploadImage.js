@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import Dropzone from 'react-dropzone'
 import PropTypes from 'prop-types'
 
-import {
-    ImageInput,
-    ImageField
-} from 'admin-on-rest';
+// import {
+//     ImageInput,
+//     ImageField
+// } from 'admin-on-rest';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentCancel from 'material-ui/svg-icons/content/clear';
 
@@ -44,22 +44,24 @@ class Accept extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            file: props.input.value || []
+            file: props.input || ''
         };
-        const {source} = props;
 
         this.cancelImg = this.cancelImg.bind(this);
     }
-    componentWillReceiveProps(nextProps) {
-        let files = nextProps.input.value || [];
 
-        this.setState({ file: files });
+    componentWillReceiveProps(nextProps) {
+        let file = nextProps.input || '';
+
+        this.setState({file: file});
     }
+
     onDrop(files) {
         this.setState({
             file: files[0]
         });
         this.props.select && this.props.select(files[0]);
+        // this.props.input.onChange(files[0]);
     }
 
     cancelImg() {
@@ -68,6 +70,8 @@ class Accept extends Component {
     }
 
     render() {
+        const {source, input} = this.props;
+
         console.log(this.state.file);
         const children = this.props;
         console.log(children);
@@ -88,8 +92,11 @@ class Accept extends Component {
     }
 }
 
-Accept.propTypes = ImageInput.propTypes;
+Accept.propTypes = {
+    input: PropTypes.object,
+    source: PropTypes.string
+};
 
-Accept.defaultProps = ImageInput.defaultProps;
+Accept.defaultProps = {};
 
 export default Accept

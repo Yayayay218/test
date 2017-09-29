@@ -21,7 +21,6 @@ import {
 } from 'admin-on-rest';
 
 import {required} from 'admin-on-rest'
-import FileUploader from './ImageUpload'
 import Accept from './UploadImage'
 
 export const QuizList = (props) => (
@@ -61,7 +60,7 @@ export const QuizCreate = (props) => {
                 <FormTab label="Quiz's Information">
                     <TextInput source="title" validate={[required]}/>
                     <TextInput source="description" validate={[required]}/>
-                    <Accept source="image"/>
+                    {/*<Accept source="image" />*/}
                 </FormTab>
                 <FormTab label="Featured Image">
                     <ImageInput source="file" label="Featured Image" accept="image/*">

@@ -30,8 +30,8 @@ exports.uploadFile = function (req, res) {
         if (!req.file) {
             sendJSONresponse(res, 404, {message: 'fail'})
         }
+        console.log(req.file);
         var url = req.protocol + '://' + req.get('host') + '/' + req.file.path;
-        console.log(url);
         sendJSONresponse(res, 200, url);
     })
 };

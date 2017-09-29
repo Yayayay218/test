@@ -14,7 +14,7 @@ export class EmbeddedManyInput extends Component {
 
     renderList = ({fields}) => {
         const {children} = this.props;
-        // console.log('err', children);
+        // console.log('err', this.props);
         return (
             <div style={{margin: '1em'}}>
                 {fields.map((member, index) =>

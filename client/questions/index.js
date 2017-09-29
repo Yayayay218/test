@@ -64,7 +64,11 @@ export const QuestionCreate = (props) => {
                 </FormTab>
 
                 <FormTab label="Answer">
-                    <SelectTypeAnswer/>
+                    {/*<SelectTypeAnswer/>*/}
+                    <EmbeddedManyInput source="answers">
+                        <TextInput source="content" label="Answer"/>
+                        <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
+                    </EmbeddedManyInput>
                 </FormTab>
 
                 <FormTab label="Featured Image">
@@ -111,11 +115,11 @@ export const QuestionEdit = (props) => {
                 </FormTab>
                 <FormTab label="answers">
                     <EmbeddedManyInput source="answers">
-                        {/*<TextInput source="content" label="Answer"/>*/}
-                        {/*<NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>*/}
-                        <ImageField source='img' title='title'/>
+                        <TextInput source="content" label="Answer"/>
+                        <NullableBooleanInput source="isCorrect" label="Is Correct?" validate={[required]}/>
+                        {/*<ImageField source='img' title='title'/>*/}
                         {/*<ImageInput source="photos" label="Answer's Image" accept="image/*" validate={[required]}>*/}
-                            {/*<ImageField source="src" title="title"/>*/}
+                        {/*<ImageField source="src" title="title"/>*/}
                         {/*</ImageInput>*/}
                     </EmbeddedManyInput>
                 </FormTab>

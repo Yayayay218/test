@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var HTTPStatus = require('../helpers/lib/http_status');
 var constant = require('../helpers/lib/constant');
-
+var slug = require('slug');
 var Quizzes = mongoose.model('Quizzes');
 
 var sendJSONResponse = function (res, status, content) {
@@ -34,6 +34,7 @@ module.exports.quizPOST = function (req, res) {
                 success: false,
                 message: err
             });
+        req.body.slug = slug(req.body.title);
         var data = req.body;
 
         var quiz = new Quizzes(data);
@@ -57,10 +58,16 @@ module.exports.quizGetAll = function (req, res) {
     var query = req.query || {};
     const id = req.query.id;
     delete req.query.id;
+    const slug = req.query.slug;
+    delete req.query.slug;
     if (id)
         query = {
             "_id": {$in: id}
         };
+    else if (slug)
+        query = {
+            "slug": {$in: slug}
+        }
     else
         query = {};
     Quizzes.paginate(
@@ -132,6 +139,7 @@ module.exports.quizPUT = function (req, res) {
                 success: false,
                 message: err
             });
+        req.body.slug = slug(req.body.title);
         var data = req.body;
         Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
             if (err)
