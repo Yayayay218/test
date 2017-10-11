@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f287f05-bbcf-4504-b993-1e727f1cba1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/caddy/Dockerfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/caddy/conf.d/Caddyfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/nginx/dhparams.example.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/nginx/nginx-secure.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/nginx/nginx.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compose/nginx/start.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compose/nginx/Dockerfile" afterPath="$PROJECT_DIR$/compose/nginx/Dockerfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compose/nginx/conf.d/quiz-backend.conf" afterPath="$PROJECT_DIR$/compose/nginx/conf.d/quiz-backend.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compose/node/Dockerfile" afterPath="$PROJECT_DIR$/compose/node/Dockerfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/file.controller.js" afterPath="$PROJECT_DIR$/controllers/file.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/quiz.controller.js" afterPath="$PROJECT_DIR$/controllers/quiz.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker-compose.prod.yml" afterPath="$PROJECT_DIR$/docker-compose.prod.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swagger/index.yaml" afterPath="$PROJECT_DIR$/swagger/index.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quiz-frontend" afterPath="$PROJECT_DIR$/quiz-frontend" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +15,48 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="contact.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/contact.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="yquizz.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quiz-frontend/app/styles/yquizz.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="664" column="19" lean-forward="true" selection-start-line="664" selection-start-column="19" selection-end-line="664" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/layouts/footer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/about.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -128,18 +154,18 @@
         <option value="$PROJECT_DIR$/quiz-frontend/app/views/detail/detail.state.js" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/views/home/index.html" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/index.html" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/copyright.html" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/privacy.html" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/contact.html" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/scripts/app.js" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/about.html" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/views/layouts/footer.html" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/result.html" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/scripts/controllers/aaa.js" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/scripts/controllers/quiz.js" />
-        <option value="$PROJECT_DIR$/quiz-frontend/app/styles/yquizz.css" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/views/detail/detail.html" />
         <option value="$PROJECT_DIR$/quiz-frontend/app/styles/js/ads.js" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/about.html" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/privacy.html" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/copyright.html" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/scripts/app.js" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/views/layouts/footer.html" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/styles/yquizz.css" />
+        <option value="$PROJECT_DIR$/quiz-frontend/app/views/staticPage/contact.html" />
       </list>
     </option>
   </component>
@@ -201,6 +227,36 @@
               <item name="quiz-backend" type="462c0819:PsiDirectoryNode" />
               <item name="quiz-frontend" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="quiz-frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="quiz-frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="quiz-frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="quiz-frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="staticPage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -431,12 +487,12 @@
       <workItem from="1507539265533" duration="4019000" />
       <workItem from="1507626725951" duration="39000" />
       <workItem from="1507686385603" duration="13616000" />
-      <workItem from="1507708964770" duration="64000" />
+      <workItem from="1507708964770" duration="2223000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367275000" />
+    <option name="totallyTimeSpent" value="369434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -450,14 +506,14 @@
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1920" height="1084" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18608329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18608329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34696016" sideWeight="0.5086979" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3480084" sideWeight="0.49130204" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3480084" sideWeight="0.49130204" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -750,49 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/copyright.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/privacy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/contact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="17" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/layouts/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-319">
@@ -812,14 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/styles/yquizz.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15216">
-          <caret line="634" column="25" lean-forward="false" selection-start-line="634" selection-start-column="25" selection-end-line="634" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -844,6 +849,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="134" column="27" lean-forward="true" selection-start-line="134" selection-start-column="27" selection-end-line="134" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/privacy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/copyright.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="112" column="56" lean-forward="false" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/layouts/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/styles/yquizz.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="664" column="19" lean-forward="true" selection-start-line="664" selection-start-column="19" selection-end-line="664" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/staticPage/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding />
         </state>
       </provider>
