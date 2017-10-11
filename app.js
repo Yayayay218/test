@@ -5,18 +5,18 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var paginate 	= require('express-paginate');
-var swaggerUi 	= require('swagger-ui-express');
+var paginate = require('express-paginate');
+var swaggerUi = require('swagger-ui-express');
 
-var JsonRefs 	= require('json-refs');
-var YAML 		= require('js-yaml');
+var JsonRefs = require('json-refs');
+var YAML = require('js-yaml');
 
 require('./models/db');
 
 var cors = require('cors'); // call the cors to fix access control bug.
 
 app.use(cors());
-app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
+// app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
 
 var routesApi = require('./routes/index');
 // view engine setup
@@ -26,8 +26,8 @@ app.set('view engine', 'jade');
 app.use(favicon());
 app.use(logger('dev'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb'}));
 app.use(bodyParser({limit: '50mb'}));
 
 app.use(cookieParser());
@@ -43,11 +43,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/uploads/media', express.static(path.join(__dirname, 'uploads/media')));
 
-// app.get('/', function (req, res) {
-//     res.json({message: "Welcome to our Quiz!"});
+// Otherwise render the index.html page for the Angular SPA
+// This means we don't have to map all of the SPA routes in Express
+// app.use(function(req, res) {
+//     res.sendFile(path.join(__dirname, 'quiz-frontend', 'app', 'index.html'));
 // });
+// app.use('/', express.static(__dirname + 'quiz-frontend', 'app', 'index.html'));
 
-var optionsRef 	= {
+var optionsRef = {
     filter: ['relative', 'remote'],
     loaderOptions: {
         processContent: function (res, cb) {

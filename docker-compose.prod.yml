@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   mongo_data: {}
+  caddy: {}
 
 services:
   node:
@@ -15,7 +16,7 @@ services:
       DATABASE_URL: "mongodb://mongo:27017/quiz"
     volumes:
       - /home/app/quiz-backend/uploads
-      - /root/opt/quiz-frontend:/home/app/quiz-backend/quiz-frontend
+#      - /root/opt/quiz-frontend:/home/app/quiz-backend/quiz-frontend
     ports:
       - '3000:3000'
     depends_on:
@@ -27,12 +28,45 @@ services:
     command: mongod --smallfiles
     volumes:
       - mongo_data:/data/db
-  nginx:
-    restart: always
-    build: ./compose/nginx
-    volumes_from:
-      - node
+  caddy:
+    build:
+      context: .
+      dockerfile: ./compose/caddy/Dockerfile
     depends_on:
       - node
+    volumes:
+      - caddy:/root/.caddy
+    environment:
+      - DOMAIN_NAME=yquizz.com
     ports:
-      - "80:80"
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+#  nginx:
+#    restart: always
+#    build: ./compose/nginx
+#    volumes_from:
+#      - node
+#    depends_on:
+#      - node
+#    ports:
+#      - "80:80"
+#    environment:
+#      - MY_DOMAIN_NAME=yquizz.com
+#    ports:
+#      - "0.0.0.0:80:80"
+#      - "0.0.0.0:443:443"
+#    volumes:
+#      - /etc/letsencrypt:/etc/letsencrypt
+#      - /var/lib/letsencrypt:/var/lib/letsencrypt
+#  certbot:
+#    image: quay.io/letsencrypt/letsencrypt
+#    command: bash -c "sleep 6 && certbot certonly -n --standalone -d yquizz.com --text --agree-tos --email khangds218@gmail.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
+#    entrypoint: ""
+#    volumes:
+#      - /etc/letsencrypt:/etc/letsencrypt
+#      - /var/lib/letsencrypt:/var/lib/letsencrypt
+#    ports:
+#      - "80"
+#      - "443"
+#    environment:
+#      - TERM=xterm

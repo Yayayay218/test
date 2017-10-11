@@ -67,7 +67,7 @@ module.exports.quizGetAll = function (req, res) {
     else if (slug)
         query = {
             "slug": {$in: slug}
-        }
+        };
     else
         query = {};
     Quizzes.paginate(
