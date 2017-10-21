@@ -2,10 +2,21 @@ var express = require('express');
 
 var router = express.Router();
 
+var jwt = require('express-jwt');
+
+var auth = jwt({
+    secret: 'MY_SECRET',
+    userProperty: 'payload'
+});
+
 var ctrlQuiz = require('../controllers/quiz.controller');
 var ctrlQuestion = require('../controllers/question.controller');
 var ctrlResult = require('../controllers/result.controller');
 var ctrlFile = require('../controllers/file.controller');
+var authCtrl = require('../controllers/auth');
+
+router.post('/auth/register', authCtrl.register);
+router.post('/auth/login', authCtrl.login);
 
 //  Quiz APIs
 router.post('/quizzes', ctrlQuiz.quizPOST);

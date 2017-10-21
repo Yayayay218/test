@@ -12,11 +12,12 @@ var JsonRefs = require('json-refs');
 var YAML = require('js-yaml');
 
 require('./models/db');
+require('./helpers/lib/passport');
 
 var cors = require('cors'); // call the cors to fix access control bug.
 
 app.use(cors());
-// app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
+app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
 
 var routesApi = require('./routes/index');
 // view engine setup

@@ -39,12 +39,32 @@ exports.uploadFile = function (req, res) {
     })
 };
 
+var getPhotoUrl = function (photo, array, callback) {
+    photo.map(function (file) {
+        var datetimestamp = Date.now();
+        var fileName = 'file-' + datetimestamp;
+        base64Img.img(file, 'uploads/media', fileName, function (err, filepath) {
+            var url = filepath;
+            array.push(url)
+        })
+    })
+    setTimeout(function () {
+        callback();
+    }, 500)
+}
 exports.uploadPhotos = function (req, res) {
+    // var photos = [];
+    // if (req.body.coverPhoto.length > 1)
+    //     getPhotoUrl(req.body.coverPhoto, photos, function () {
+    //         sendJSONresponse(res, 200, photos)
+    //     })
+    // else {
     var data = req.body.coverPhoto;
     var datetimestamp = Date.now();
-    var fileName = 'file-'+datetimestamp;
+    var fileName = 'file-' + datetimestamp;
     base64Img.img(data, 'uploads/media', fileName, function (err, filepath) {
         var url = filepath;
         sendJSONresponse(res, 200, url)
     })
+    // }
 };

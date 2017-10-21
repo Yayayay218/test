@@ -46,3 +46,4 @@ process.on('SIGTERM', function () {
 require('./quizzes');
 require('./questions');
 require('./results');
+require('./users');

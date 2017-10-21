@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var HTTPStatus = require('../helpers/lib/http_status');
 var constant = require('../helpers/lib/constant');
+var base64Img = require('base64-img');
+var async = require('async');
+var randomString = require('randomstring');
 var slug = require('slug');
 var Quizzes = mongoose.model('Quizzes');
 
@@ -26,31 +29,64 @@ var upload = multer({
     storage: storage
 }).single('file');
 
+var getImg = function (photo) {
+    return new Promise(function (resolve, reject) {
+        var tmp = [];
+        async.each(photo, function (item, callback) {
+            var datetimestamp = Date.now();
+            var fileName = 'file-' + datetimestamp + randomString.generate(7);
+            if (item.featuredImg != '')
+                if (item.answers)
+                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                        tmp.push({
+                            title: item.title,
+                            featuredImg: filepath,
+                            answers: item.answers
+                        });
+                        callback();
+                    })
+                else
+                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                        tmp.push({
+                            title: item.title,
+                            featuredImg: filepath
+                        });
+                        callback();
+                    })
+            else callback();
+        }, function (err) {
+            if (err)
+                reject(err);
+            else
+                resolve(tmp);
+        })
+    })
+}
 //  POST a quiz
 module.exports.quizPOST = function (req, res) {
-    upload(req, res, function (err) {
-        if (err)
-            return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-                success: false,
-                message: err
-            });
-        req.body.slug = slug(req.body.title);
-        var data = req.body;
-
-        var quiz = new Quizzes(data);
-        quiz.save(function (err, quiz) {
-            if (err)
-                return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-                    success: false,
-                    message: err
-                });
-            return sendJSONResponse(res, HTTPStatus.CREATED, {
-                success: true,
-                message: "Add a new quiz successful!",
-                data: quiz
+    req.body.slug = slug(req.body.title);
+    var data = req.body;
+    getImg(data.results).then(function (result) {
+        data.results = result;
+        getImg(data.questions).then(function (question) {
+            data.questions = question;
+            var quiz = new Quizzes(data);
+            quiz.save(function (err, quiz) {
+                if (err)
+                    return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, err)
+                return sendJSONResponse(res, HTTPStatus.OK, {
+                    success: true,
+                    message: 'OK',
+                    data: quiz
+                })
             })
+        }).catch(function (err) {
+            console.log(err)
         })
-    });
+    }).catch(function (err) {
+        console.log(err)
+    })
+
 };
 
 //  GET all quizzes
