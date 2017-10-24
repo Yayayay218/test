@@ -168,32 +168,61 @@ module.exports.quizDEL = function (req, res) {
 //  PUT a quiz
 module.exports.quizPUT = function (req, res) {
     req.body.updatedAt = Date.now();
+    req.body.slug = slug(req.body.title);
+    var data = req.body;
 
-    upload(req, res, function (err) {
-        if (err)
-            return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-                success: false,
-                message: err
-            });
-        req.body.slug = slug(req.body.title);
-        var data = req.body;
-        Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
-            if (err)
-                return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-                    success: false,
-                    message: err
-                });
-            if (!quiz)
-                return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
-                    success: false,
-                    message: "Quiz's not founded"
-                });
-            return sendJSONResponse(res, HTTPStatus.OK, {
-                success: true,
-                message: 'Update quiz successful!',
-                data: quiz
+    getImg(data.results).then(function (result) {
+        data.results = result;
+        getImg(data.questions).then(function (question) {
+            data.questions = question;
+            Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
+                if (err)
+                    return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
+                        success: false,
+                        message: err
+                    });
+                if (!quiz)
+                    return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
+                        success: false,
+                        message: "Quiz's not founded"
+                    });
+                return sendJSONResponse(res, HTTPStatus.OK, {
+                    success: true,
+                    message: 'Update quiz successful!',
+                    data: quiz
+                })
             })
+        }).catch(function (err) {
+            console.log(err)
         })
-    });
+    }).catch(function (err) {
+        console.log(err)
+    })
+    // upload(req, res, function (err) {
+    //     if (err)
+    //         return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
+    //             success: false,
+    //             message: err
+    //         });
+    //     req.body.slug = slug(req.body.title);
+    //     var data = req.body;
+    //     Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
+    //         if (err)
+    //             return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
+    //                 success: false,
+    //                 message: err
+    //             });
+    //         if (!quiz)
+    //             return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
+    //                 success: false,
+    //                 message: "Quiz's not founded"
+    //             });
+    //         return sendJSONResponse(res, HTTPStatus.OK, {
+    //             success: true,
+    //             message: 'Update quiz successful!',
+    //             data: quiz
+    //         })
+    //     })
+    // });
 
 };
