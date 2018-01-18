@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f287f05-bbcf-4504-b993-1e727f1cba1f" name="Default" comment="">
+<<<<<<< HEAD
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -16,6 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="a.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quiz-frontend/a.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -31,6 +36,23 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="521">
               <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+=======
+      <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/auth/admin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
               <folding />
             </state>
           </provider>
@@ -467,12 +489,20 @@
       <workItem from="1513137221992" duration="579000" />
       <workItem from="1514270814490" duration="80000" />
       <workItem from="1516161641349" duration="7649000" />
+<<<<<<< HEAD
       <workItem from="1516244524226" duration="4794000" />
+=======
+      <workItem from="1516244524226" duration="4114000" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="483267000" />
+=======
+    <option name="totallyTimeSpent" value="482587000" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -545,6 +575,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/images/icons/edit.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
     <entry file="file://$PROJECT_DIR$/uploads/media/file-15087260996620FqGcso.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -874,12 +914,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+<<<<<<< HEAD
+=======
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz-frontend/app/views/auth/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-716">
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
@@ -898,6 +950,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+=======
+        <state relative-caret-position="378">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+>>>>>>> dd0b7270402b816d3f901a9062fc88eb47385545
           <folding />
         </state>
       </provider>

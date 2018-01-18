@@ -60,3 +60,4 @@ typings/
 
 babel_cache/
 uploads/media
+.idea/
