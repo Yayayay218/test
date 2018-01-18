@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/uploads/media', express.static(path.join(__dirname, 'uploads/media')));
+app.use('/storage/media', express.static(path.join(__dirname, 'storage/media')));
 
 // Otherwise render the index.html page for the Angular SPA
 // This means we don't have to map all of the SPA routes in Express
