@@ -35,7 +35,7 @@ app.use(cookieParser());
 
 app.use(paginate.middleware(10, 50)); // limit=10,  maxLimit=50
 
-app.use(express.static(path.join(__dirname, 'quiz-frontend', 'app')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use(express.static(path.join(__dirname, 'node_modules/swagger-ui-express/static')));
 app.use(express.static(path.join(__dirname, 'views')));
