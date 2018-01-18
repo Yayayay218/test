@@ -18,7 +18,7 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {
-        cb(null, 'uploads/quiz')
+        cb(null, 'storage/quiz')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -37,7 +37,7 @@ var getImg = function (photo) {
             var fileName = 'file-' + datetimestamp + randomString.generate(7);
             if (item.featuredImg != '')
                 if (item.answers)
-                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                    base64Img.img(item.featuredImg, 'storage/media', fileName, function (err, filepath) {
                         tmp.push({
                             title: item.title,
                             featuredImg: filepath,
@@ -46,7 +46,7 @@ var getImg = function (photo) {
                         callback();
                     })
                 else
-                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                    base64Img.img(item.featuredImg, 'storage/media', fileName, function (err, filepath) {
                         tmp.push({
                             title: item.title,
                             featuredImg: filepath
