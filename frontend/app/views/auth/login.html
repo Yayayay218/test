@@ -1,0 +1,24 @@
+<div class="container-fluid login-page" style="padding-left: 0">
+    <div class="login-content">
+        <h1>SIGN IN</h1>
+
+        <form ng-submit="onSubmit()">
+            <div>
+                <input type="text" id="username" ng-model="credentials.email" autocomplete="off" autocorrect="off" autocapitalize="off"
+                       spellcheck="false">
+                <span>
+        <label for="username">Username</label>
+       </span>
+            </div>
+            <div>
+                <input type="password" id="password" ng-model="credentials.password">
+                <span>
+        <label for="password">Password</label>
+      </span>
+            </div>
+            <div>
+                <input type="submit" value="Sign in">
+            </div>
+        </form>
+    </div>
+</div>

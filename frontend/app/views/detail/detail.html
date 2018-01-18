@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="col-md-8">
+        <div class="yquizz-detail">
+            <h1 class="hidden-xs">{{quizById[0].title}}</h1>
+            <p class="hidden-xs">{{quizById[0].description}}</p>
+        </div>
+
+        <div class="yquizz-detail">
+            <div id="mainContainer">
+                <div id="adContainer">
+                    <video id="contentElement"></video>
+                </div>
+            </div>
+            <script>
+                var url_ads = 'https://googleads.g.doubleclick.net/pagead/ads?ad_type=image&client=ca-games-pub-4290458289993584&description_url=http%3A%2F%2Fyquizz.com&channel=4062550788&videoad_start_delay=0&hl=en';
+                width = screen.width;
+                var left_position = "";
+                if (width < 750) {
+                    var width_ads = width;
+                    var heightGame = 300;
+                    var height_ads = 300;
+                    var margin = "0px";
+                    var marginLeft = "-15px"
+                } else {
+                    var width_ads = 730;
+                    var heightGame = 450;
+                    var height_ads = 450;
+                }
+                document.getElementById('adContainer').style.width = width_ads + 'px';
+                document.getElementById('adContainer').style.height = heightGame + 'px';
+                document.getElementById('adContainer').style.marginTop = margin;
+                document.getElementById('adContainer').style.marginLeft = marginLeft;
+            </script>
+
+            <script async type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+            <script async type="text/javascript" src="../../styles/js/ads.js"></script>
+            <script>
+                function skipAds() {
+                    document.getElementById('adContainer').style.display = 'none';
+                }
+
+                function insightAds(x) {
+                    skipAds();
+                }
+            </script>
+            <!--<h1 class="hidden-xs">{{quizById[0].title}}</h1>-->
+            <!--<p class="hidden-xs">{{quizById[0].description}}</p>-->
+            <div class="show-first" ng-show="showFirst">
+                <h1 class="hidden-sm hidden-md hidden-lg">{{quizById[0].title}}</h1>
+                <img src="../../images/background.jpeg" alt="">
+                <button type="button" class="btn btn-default btn-circle btn-xl" ng-click="play()" id="playButton">PLAY
+                </button>
+            </div>
+
+            <div class="show-second" ng-show="showSecond">
+                <img ng-src="{{quizById[0].questions[indexStt].featuredImg}}" alt="">
+                <div class="yquizz-question">
+                    <h2>{{quizById[0].questions[indexStt].title}}</h2>
+                    <div class="number-question">
+                        <p>Question {{indexStt + 1}}/{{quizById[0].questions.length}}</p>
+                    </div>
+                </div>
+                <div class="btn-group-vertical">
+                    <button type="button" class="btn btn-primary" ng-click="pickAnswer()"
+                            ng-repeat="choice in quizById[0].questions[indexStt].answers">{{choice.title}}
+                    </button>
+                </div>
+            </div>
+
+            <div class="show-second" ng-show="showResult">
+                <img ng-src="{{results[randResult].featuredImg}}" alt="">
+                <div class="yquizz-question">
+                    <h2>{{results[randResult].title}}</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="button" class="btn yquizz-btn btn-facebook" id="fbBtn" ng-click="shareFB()"><span
+                            class="facebook-icon-btn"></span>Share on Facebook
+                    </button>
+                </div>
+                <div class="col-md-5">
+                    <button type="button" class="btn yquizz-btn btn-message" ng-click="sendFB()"><span
+                            class="messenger-icon"></span>Share on Messenger
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn yquizz-btn btn-next" ui-sref="detail({slug: next.slug})">Next
+                        Quiz
+                    </button>
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <!--<div class="fb-comments" data-href="http://yquizz.com/{{quizById[0].slug}}" data-width="100%"-->
+            <!--data-numposts="5"></div>-->
+            <!--</div>-->
+            <div class="row" style="margin-top: 20px">
+                <div class="col-md-4" ng-repeat="quiz in items | limitTo: 6">
+                    <div class="yquizz-list-sm custom-yquizz-list" >
+                        <div class="yquizz-img-sm">
+                            <a ui-sref="detail({slug: quiz.slug})" href=""><img ng-src="{{quiz.featuredImg}}" alt=""></a>
+                        </div>
+                        <div class="yquizz-list-content-sm">
+                            <!--<i class="fa fa-eye" style="margin-top: 15px"></i> 2108-->
+                            <h3><a ui-sref="detail({slug: quiz.slug})" href="">{{quiz.title}}</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" style="margin-left: -15px;margin-right: -15px">
+        <div class="email-group"></div>
+        <div class="yquizz-email">
+            <p>Sign up for our awesome newsletter to get the latest news</p>
+            <div class="form-email">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter email address">
+                        <div class="input-group-addon">
+                            <span class="icon-email"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="yquizz-list-sm custom-yquizz-list" ng-repeat="quiz in items | limitTo: 2">
+            <div class="yquizz-img-sm">
+                <a ui-sref="detail({slug: quiz.slug})" href=""><img ng-src="{{quiz.featuredImg}}" alt=""></a>
+            </div>
+            <div class="yquizz-list-content-sm">
+                <!--<i class="fa fa-eye" style="margin-top: 15px"></i> 2108-->
+                <h3><a ui-sref="detail({slug: quiz.slug})" href="">{{quiz.title}}</a></h3>
+                <p>{{quiz.description}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

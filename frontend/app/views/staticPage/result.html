@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>IMA HTML5 Simple Demo</title>
+    <script>
+        var dataYlinkee1 = "%7B%22tag_01%22%3A%7B%22url%22%3A%22https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fads%3Fad_type%3Dimage%26client%3Dca-games-pub-5477307030870200%26description_url%3Dhttp%3A%2F%2Fen.topquiz.co%2FFind-Cheap-Used-Cars.html%26channel%3D8349713578%26videoad_start_delay%3D0%26hl%3Den%26max_ad_duration%3D30000%22%2C%22ctr%22%3A%2210%22%2C%22value%22%3A%220.109%22%7D%2C%22tag_02%22%3A%7B%22url%22%3A%22https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fads%3Fad_type%3Dimage%26client%3Dca-games-pub-5477307030870200%26description_url%3Dhttp%3A%2F%2Fen.topquiz.co%2FFind-Cheap-Used-Cars.html%26channel%3D2963511176%26videoad_start_delay%3D0%26hl%3Den%26max_ad_duration%3D30000%22%2C%22ctr%22%3A%229%22%2C%22value%22%3A%220.09%22%7D%2C%22tag_03%22%3A%7B%22url%22%3A%22https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fads%3Fad_type%3Dimage%26client%3Dca-games-pub-5477307030870200%26description_url%3Dhttp%3A%2F%2Fen.topquiz.co%2FFind-Cheap-Used-Cars.html%26channel%3D3290166774%26videoad_start_delay%3D0%26hl%3Den%26max_ad_duration%3D30000%22%2C%22ctr%22%3A%228%22%2C%22value%22%3A%220.11%22%7D%7D";
+        var dataYlinkee = decodeURIComponent(dataYlinkee1);
+        dataYlinkee = JSON.parse(dataYlinkee);
+    </script>
+</head>
+
+<body>
+<button id="btnPlay" onclick="onclickBtn()">Play</button>
+<div id="contentElement">
+    <div id="adContainer"></div>
+</div>
+<script>
+    width = screen.width;
+    var left_position = "";
+    if(width < 750){
+        var width_ads = width;
+        var heightGame = 400;
+        var height_ads = 400;
+        var left_position = "-15px";
+    }else{
+        var width_ads = 750;
+        var heightGame = 450;
+        var height_ads = 450;
+    }
+    document.getElementById('adContainer').style.width = width_ads+'px';
+    document.getElementById('adContainer').style.height = heightGame+'px';
+    document.getElementById('adContainer').style.left = left_position;
+    if(dataYlinkee.tag_01.ctr == ""){
+        var randomAds = Math.floor(Math.random()*6);
+    }else{
+        var randomAds = Math.floor(Math.random()*dataYlinkee.tag_01.ctr);
+    }
+    if(randomAds == 1){
+        document.getElementById('adContainer').style.opacity = 0;
+        setTimeout(function(){
+            document.getElementById('adContainer').style.opacity = 1;
+        },5000);
+    }
+    var checkDoneCreateImg = false;
+    var checkAdsHide = false;
+    var channel_id = '8349713578'; //channel ads main
+    if(dataYlinkee.tag_01.url == "" || dataYlinkee.tag_01.url == null){
+        channel_id = '8349713578'; //channel ads main
+        var href_ads ="http://en.topquiz.co/Find-Cheap-Used-Cars.html";
+        var url_ads = "https://googleads.g.doubleclick.net/pagead/ads?ad_type=image&client=ca-games-pub-5477307030870200&description_url="+href_ads+"&channel="+channel_id+"&videoad_start_delay=0&hl=en&max_ad_duration=30000";
+    }else{
+        var url_ads = dataYlinkee.tag_01.url;
+    }
+</script>
+<script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+<script type="text/javascript" src="http://en.topquiz.co/assets/js/ads2.js"></script>
+<script>
+    function skipAds(){
+        checkAdsHide = true;
+        document.getElementById('adContainer').style.display = 'none';
+        document.getElementById('xemketqua').style.display="none";
+        $("#xemketqua1").css("display","none");
+        $("#xemcautiep").css("display","none");
+        if(channel_id=='2963511176'){
+            document.getElementById('sharefacebook').style.display = 'block';
+        }
+    }
+    function insightAds(x){
+        skipAds();
+    }
+</script>
+</body>
+</html>
