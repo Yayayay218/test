@@ -11,7 +11,7 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {
-        cb(null, 'uploads')
+        cb(null, 'uploads/media')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -62,7 +62,7 @@ exports.uploadPhotos = function (req, res) {
     var data = req.body.coverPhoto;
     var datetimestamp = Date.now();
     var fileName = 'file-' + datetimestamp;
-    base64Img.img(data, 'uploads', fileName, function (err, filepath) {
+    base64Img.img(data, 'uploads/media', fileName, function (err, filepath) {
         var url = filepath;
         sendJSONresponse(res, 200, url)
     })
