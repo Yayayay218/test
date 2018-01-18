@@ -37,7 +37,7 @@ var getImg = function (photo) {
             var fileName = 'file-' + datetimestamp + randomString.generate(7);
             if (item.featuredImg != '')
                 if (item.answers)
-                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                    base64Img.img(item.featuredImg, 'uploads', fileName, function (err, filepath) {
                         tmp.push({
                             title: item.title,
                             featuredImg: filepath,
@@ -46,7 +46,7 @@ var getImg = function (photo) {
                         callback();
                     })
                 else
-                    base64Img.img(item.featuredImg, 'uploads/media', fileName, function (err, filepath) {
+                    base64Img.img(item.featuredImg, 'uploads', fileName, function (err, filepath) {
                         tmp.push({
                             title: item.title,
                             featuredImg: filepath
