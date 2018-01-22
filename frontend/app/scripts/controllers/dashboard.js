@@ -46,14 +46,6 @@ angular.module('YQuiz')
                 });
         }
 
-        // $scope.items = quizService
-        //     .quizGetAll(1)
-        //     .catch(function (e) {
-        //         console.log(e)
-        //     })
-        //     .then(function (res) {
-        //         $scope.items = res.data.data;
-        //     });
         $scope.onDelete = function onDelete(data) {
             Dialog.deleteDialog('Do you want to delete this collection',
                 quizService.quizDelete.bind(null, data._id),
@@ -125,11 +117,13 @@ angular.module('YQuiz')
         $scope.results = [
             {
                 title: '',
-                featuredImg: ''
+                featuredImg: '',
+                correctNumber: ''
             },
             {
                 title: '',
-                featuredImg: ''
+                featuredImg: '',
+                correctNumber: ''
             }
         ];
 
@@ -139,10 +133,12 @@ angular.module('YQuiz')
                 featuredImg: '',
                 answers: [
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                 ]
             },
@@ -151,10 +147,12 @@ angular.module('YQuiz')
                 featuredImg: '',
                 answers: [
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                 ]
             }
@@ -163,9 +161,14 @@ angular.module('YQuiz')
         $scope.addNewResult = function () {
             $scope.results.push({
                 title: '',
-                featuredImg: ''
+                featuredImg: '',
+                correctNumber: ''
             });
         };
+
+        $scope.onChangeNumber = function () {
+            console.log($scope.results)
+        }
 
         $scope.addNewQuestion = function () {
             $scope.questions.push({
@@ -173,25 +176,30 @@ angular.module('YQuiz')
                 featuredImg: '',
                 answers: [
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                     {
-                        title: ''
+                        title: '',
+                        isCorrect: 0
                     },
                 ]
             })
         };
         $scope.answers = [
             {
-                title: ''
+                title: '',
+                isCorrect: 0
             },
             {
-                title: ''
+                title: '',
+                isCorrect: 0
             }
         ];
         $scope.addNewAnswer = function (index) {
             $scope.questions[index].answers.push({
-                title: ''
+                title: '',
+                isCorrect: 0
             })
         };
 
@@ -203,7 +211,6 @@ angular.module('YQuiz')
         };
         $scope.removeAnswer = function (index, data) {
             data.answers.splice(index, 1)
-            // $scope.questions.answers.splice(index, 1)
         }
 
         $scope.submit = function () {

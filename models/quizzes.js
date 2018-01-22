@@ -3,14 +3,22 @@ var mongoosePaginate = require('mongoose-paginate');
 
 var resultSchema = new mongoose.Schema({
     title: String,
-    featuredImg: String
+    featuredImg: String,
+    correctNumber: {
+        type: Number,
+        default: 0
+    }
 })
 
 var questionSchema = new mongoose.Schema({
     title: String,
     featuredImg: String,
     answers: [{
-        title: String
+        title: String,
+        isCorrect: {
+            type: Number,
+            default: 0
+        }
     }]
 })
 

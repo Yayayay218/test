@@ -16,18 +16,18 @@ var sendJSONResponse = function (res, status, content) {
 //  Config upload photo
 var multer = require('multer');
 
-var storage = multer.diskStorage({ //multers disk storage settings
-    destination: function (req, file, cb) {
-        cb(null, 'storage/quiz')
-    },
-    filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
-    }
-});
-var upload = multer({
-    storage: storage
-}).single('file');
+// var storage = multer.diskStorage({ //multers disk storage settings
+//     destination: function (req, file, cb) {
+//         cb(null, 'storage/quiz')
+//     },
+//     filename: function (req, file, cb) {
+//         var datetimestamp = Date.now();
+//         cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+//     }
+// });
+// var upload = multer({
+//     storage: storage
+// }).single('file');
 
 var getImg = function (photo) {
     return new Promise(function (resolve, reject) {
@@ -35,7 +35,7 @@ var getImg = function (photo) {
         async.each(photo, function (item, callback) {
             var datetimestamp = Date.now();
             var fileName = 'file-' + datetimestamp + randomString.generate(7);
-            if (item.featuredImg != '')
+            if (item.featuredImg !== '')
                 if (item.answers)
                     base64Img.img(item.featuredImg, 'storage/media', fileName, function (err, filepath) {
                         tmp.push({
@@ -49,7 +49,8 @@ var getImg = function (photo) {
                     base64Img.img(item.featuredImg, 'storage/media', fileName, function (err, filepath) {
                         tmp.push({
                             title: item.title,
-                            featuredImg: filepath
+                            featuredImg: filepath,
+                            correctNumber: item.correctNumber
                         });
                         callback();
                     })
@@ -67,6 +68,7 @@ module.exports.quizPOST = function (req, res) {
     req.body.slug = slug(req.body.title);
     var data = req.body;
     getImg(data.results).then(function (result) {
+        console.log(result)
         data.results = result;
         getImg(data.questions).then(function (question) {
             data.questions = question;
@@ -91,28 +93,20 @@ module.exports.quizPOST = function (req, res) {
 
 //  GET all quizzes
 module.exports.quizGetAll = function (req, res) {
+    const page = req.query.page;
+    delete req.query.page;
+    const limit = req.query.limit;
+    delete req.query.limit;
     var query = req.query || {};
-    const id = req.query.id;
-    delete req.query.id;
-    const slug = req.query.slug;
-    delete req.query.slug;
-    if (id)
-        query = {
-            "_id": {$in: id}
-        };
-    else if (slug)
-        query = {
-            "slug": {$in: slug}
-        };
-    else
-        query = {};
+
+    var sort = req.query.sort || '-createdAt';
+    delete req.query.sort;
     Quizzes.paginate(
         query,
         {
-            sort: req.query.sort,
-            populate: 'questions',
-            page: Number(req.query.page),
-            limit: Number(req.query.limit)
+            sort: sort,
+            page: Number(page),
+            limit: Number(limit)
         }, function (err, quiz) {
             if (err)
                 return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
@@ -198,31 +192,4 @@ module.exports.quizPUT = function (req, res) {
     }).catch(function (err) {
         console.log(err)
     })
-    // upload(req, res, function (err) {
-    //     if (err)
-    //         return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-    //             success: false,
-    //             message: err
-    //         });
-    //     req.body.slug = slug(req.body.title);
-    //     var data = req.body;
-    //     Quizzes.findByIdAndUpdate(req.params.id, data, {'new': true}, function (err, quiz) {
-    //         if (err)
-    //             return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
-    //                 success: false,
-    //                 message: err
-    //             });
-    //         if (!quiz)
-    //             return sendJSONResponse(res, HTTPStatus.NOT_FOUND, {
-    //                 success: false,
-    //                 message: "Quiz's not founded"
-    //             });
-    //         return sendJSONResponse(res, HTTPStatus.OK, {
-    //             success: true,
-    //             message: 'Update quiz successful!',
-    //             data: quiz
-    //         })
-    //     })
-    // });
-
 };

@@ -140,6 +140,8 @@
                                               placeholder="Result Title"></textarea>
                                     <avatar-uploader name="result-{{$index}}"
                                                      image="results[$index].featuredImg"></avatar-uploader>
+                                    <input type="number" ng-model="results[$index].correctNumber"
+                                           class="form-control" style="margin-bottom: 10px">
                                 </div>
                             </div>
                         </div>
@@ -168,6 +170,15 @@
                                                ng-show="item.answers.length > 2"></span>
                                         <textarea type="text" ng-model="item.answers[$index].title" class="form-control"
                                                   placeholder="Enter Answer"></textarea>
+                                        <div style="margin-top: 15px">
+                                            <label for="">Is Correct</label>
+                                            <label class="radio" style="margin-left: 19px;">
+                                                <input type="radio" ng-model="item.answers[$index].isCorrect" value="1">
+                                                Yes</label>
+                                            <label class="radio" style="margin-left: 19px;">
+                                                <input type="radio" ng-model="item.answers[$index].isCorrect" value="0">
+                                                No</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <button ng-click="addNewAnswer($index)" class="btn btn-primary"
@@ -214,6 +225,11 @@
                                           placeholder="Result Title"></textarea>
                                 <avatar-uploader name="result-{{$index}}"
                                                  image="results[$index].featuredImg"></avatar-uploader>
+                                <input type="number" class="form-control"
+                                       ng-model="results[$index].correctNumber"
+                                       style="margin-bottom: 10px"
+                                       placeholder="Correct Number"
+                                />
                             </div>
                         </div>
                     </div>
@@ -242,6 +258,11 @@
                                            ng-show="item.answers.length > 2"></span>
                                     <textarea type="text" ng-model="item.answers[$index].title" class="form-control"
                                               placeholder="Enter Answer"></textarea>
+                                    <div style="margin-top: 15px">
+                                        <label for="">Is Correct</label>
+                                        <label class="radio" style="margin-left: 19px;"><input type="radio" ng-model="item.answers[$index].isCorrect" value="1">Yes</label>
+                                        <label class="radio" style="margin-left: 19px;"><input type="radio" ng-model="item.answers[$index].isCorrect" value="0">No</label>
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-primary" ng-click="addNewAnswer($index)" style="margin-left: 15px;">

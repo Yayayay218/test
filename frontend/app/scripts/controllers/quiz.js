@@ -50,7 +50,7 @@ angular.module('YQuiz')
                 })
                 .then(function (res) {
                     $scope.quizById = res.data.data;
-                    var image = 'https://yquizz.com/'+$scope.quizById[0].featuredImg;
+                    var image = 'https://yquizz.com/' + $scope.quizById[0].featuredImg;
                     ngMeta.setTitle($scope.quizById[0].title);
                     ngMeta.setTag('description', $scope.quizById[0].description);
                     ngMeta.setTag('image', image)
@@ -58,11 +58,10 @@ angular.module('YQuiz')
             $timeout(function () {
 
                 $scope.urlFB = window.location.href;
-
                 $scope.results = $scope.quizById[0].results;
-                $scope.randResult = Math.floor(Math.random() * $scope.results.length);
+                $scope.randResults = Math.floor(Math.random() * $scope.results.length);
                 $scope.titleShare = $scope.quizById[0].title;
-                $scope.thumbShare = $scope.quizById[0].results[$scope.randResult].featuredImg;
+                $scope.thumbShare = $scope.quizById[0].results[$scope.randResults].featuredImg;
 
                 $scope.shareFB = function () {
                     FB.ui({
@@ -82,9 +81,10 @@ angular.module('YQuiz')
                     window.open('fb-messenger://share?link=' + encodeURIComponent($scope.urlFB) + '&app_id=' + encodeURIComponent('1706155966071399'));
                 }
             }, 1000);
-
             $scope.indexStt = 0;
-            $scope.pickAnswer = function () {
+            $scope.count = 0;
+            $scope.pickAnswer = function (i) {
+                $scope.quizById[0].questions[$scope.indexStt].answers[i].isCorrect === 1 ? $scope.count++ : null
                 $('#adContainer div').css("display", "none");
                 $scope.urlFB = window.location.href;
                 if ($scope.indexStt === 3) {
@@ -101,11 +101,16 @@ angular.module('YQuiz')
                         setUpIMA();
                     }, 300);
 
+                    $scope.randResult = $scope.results.filter(item => item.correctNumber === $scope.count).length !== 0 ?
+                        $scope.results.filter(item => item.correctNumber === $scope.count) : $scope.results
+                    $scope.thumbShare = $scope.randResult[0].featuredImg
+
                     $scope.showSecond = false;
                     $scope.showResult = true;
                 }
-                else
+                else {
                     $scope.indexStt++;
+                }
             };
             $scope.nextQuiz = $http.get(API.URL + 'quizzes')
                 .catch(function (e) {

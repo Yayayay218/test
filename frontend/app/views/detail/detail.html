@@ -61,16 +61,21 @@
                     </div>
                 </div>
                 <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-primary" ng-click="pickAnswer()"
-                            ng-repeat="choice in quizById[0].questions[indexStt].answers">{{choice.title}}
-                    </button>
+                    <div ng-repeat="choice in quizById[0].questions[indexStt].answers" style="display: grid;">
+                        <button type="button" class="btn btn-primary" ng-click="pickAnswer($index)"
+                        >{{choice.title}}
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="show-second" ng-show="showResult">
-                <img ng-src="{{results[randResult].featuredImg}}" alt="">
+                <img ng-src="{{randResult[0].featuredImg}}" alt="">
                 <div class="yquizz-question">
-                    <h2>{{results[randResult].title}}</h2>
+                    <p style="padding-left: 18px;
+                        padding-top: 30px;">
+                        Correct Answers: {{count}} / {{quizById[0].questions.length}}</p>
+                    <h2>{{randResult[0].title}}</h2>
                 </div>
             </div>
 
@@ -97,9 +102,10 @@
             <!--</div>-->
             <div class="row" style="margin-top: 20px">
                 <div class="col-md-4" ng-repeat="quiz in items | limitTo: 6">
-                    <div class="yquizz-list-sm custom-yquizz-list" >
+                    <div class="yquizz-list-sm custom-yquizz-list">
                         <div class="yquizz-img-sm">
-                            <a ui-sref="detail({slug: quiz.slug})" href=""><img ng-src="{{quiz.featuredImg}}" alt=""></a>
+                            <a ui-sref="detail({slug: quiz.slug})" href=""><img ng-src="{{quiz.featuredImg}}"
+                                                                                alt=""></a>
                         </div>
                         <div class="yquizz-list-content-sm">
                             <!--<i class="fa fa-eye" style="margin-top: 15px"></i> 2108-->
