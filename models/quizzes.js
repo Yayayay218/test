@@ -4,7 +4,7 @@ var mongoosePaginate = require('mongoose-paginate');
 var resultSchema = new mongoose.Schema({
     title: String,
     featuredImg: String,
-    correctNumber: {
+    point: {
         type: Number,
         default: 0
     }
@@ -15,7 +15,7 @@ var questionSchema = new mongoose.Schema({
     featuredImg: String,
     answers: [{
         title: String,
-        isCorrect: {
+        point: {
             type: Number,
             default: 0
         }

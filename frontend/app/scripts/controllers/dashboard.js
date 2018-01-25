@@ -83,8 +83,10 @@ angular.module('YQuiz')
                         })
                     })
                 });
+            $scope.isSubmit = false
             $scope.submit = function () {
                 // console.log($('#file-image')[0].src)
+                $scope.isSubmit = true;
                 var tmp = [];
                 $scope.results.forEach(function (e) {
                     tmp.push(e.img);
@@ -118,12 +120,12 @@ angular.module('YQuiz')
             {
                 title: '',
                 featuredImg: '',
-                correctNumber: ''
+                point: ''
             },
             {
                 title: '',
                 featuredImg: '',
-                correctNumber: ''
+                point: ''
             }
         ];
 
@@ -134,11 +136,11 @@ angular.module('YQuiz')
                 answers: [
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                 ]
             },
@@ -148,11 +150,11 @@ angular.module('YQuiz')
                 answers: [
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                 ]
             }
@@ -162,7 +164,7 @@ angular.module('YQuiz')
             $scope.results.push({
                 title: '',
                 featuredImg: '',
-                correctNumber: ''
+                point: ''
             });
         };
 
@@ -177,11 +179,11 @@ angular.module('YQuiz')
                 answers: [
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                     {
                         title: '',
-                        isCorrect: 0
+                        point: ''
                     },
                 ]
             })
@@ -189,17 +191,17 @@ angular.module('YQuiz')
         $scope.answers = [
             {
                 title: '',
-                isCorrect: 0
+                point: ''
             },
             {
                 title: '',
-                isCorrect: 0
+                point: ''
             }
         ];
         $scope.addNewAnswer = function (index) {
             $scope.questions[index].answers.push({
                 title: '',
-                isCorrect: 0
+                point: 0
             })
         };
 

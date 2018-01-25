@@ -84,7 +84,8 @@ angular.module('YQuiz')
             $scope.indexStt = 0;
             $scope.count = 0;
             $scope.pickAnswer = function (i) {
-                $scope.quizById[0].questions[$scope.indexStt].answers[i].isCorrect === 1 ? $scope.count++ : null
+                // $scope.quizById[0].questions[$scope.indexStt].answers[i].isCorrect === 1 ? $scope.count++ : null
+                $scope.count += $scope.quizById[0].questions[$scope.indexStt].answers[i].point
                 $('#adContainer div').css("display", "none");
                 $scope.urlFB = window.location.href;
                 if ($scope.indexStt === 3) {
@@ -101,8 +102,8 @@ angular.module('YQuiz')
                         setUpIMA();
                     }, 300);
 
-                    $scope.randResult = $scope.results.filter(item => item.correctNumber === $scope.count).length !== 0 ?
-                        $scope.results.filter(item => item.correctNumber === $scope.count) : $scope.results
+                    $scope.randResult = $scope.results.filter(item => item.point >= $scope.count).length !== 0 ?
+                        $scope.results.filter(item => item.point >= $scope.count) : $scope.results
                     $scope.thumbShare = $scope.randResult[0].featuredImg
 
                     $scope.showSecond = false;

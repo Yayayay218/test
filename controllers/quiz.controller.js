@@ -50,7 +50,7 @@ var getImg = function (photo) {
                         tmp.push({
                             title: item.title,
                             featuredImg: filepath,
-                            correctNumber: item.correctNumber
+                            point: item.point
                         });
                         callback();
                     })
