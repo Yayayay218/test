@@ -1,5 +1,5 @@
 www.{$DOMAIN_NAME} {
-redir https://yquizz.com
+redir https://en.yquizz.com
 
 }
 
@@ -16,7 +16,7 @@ errors stdout
 gzip
 }
 
-en.{$DOMAIN_NAME} {
+vi.{$DOMAIN_NAME} {
 proxy / node:3000 {
 header_upstream Host {host}
 header_upstream X-Real-IP {remote}
