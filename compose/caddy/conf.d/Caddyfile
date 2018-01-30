@@ -4,6 +4,12 @@ redir https://en.yquizz.com
 }
 
 {$DOMAIN_NAME} {
+redir https://en.yquizz.com
+
+}
+
+
+en.{$DOMAIN_NAME} {
 proxy / node:3000 {
 header_upstream Host {host}
 header_upstream X-Real-IP {remote}
