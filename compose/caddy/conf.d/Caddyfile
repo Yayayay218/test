@@ -10,6 +10,13 @@ header_upstream X-Real-IP {remote}
 header_upstream X-Forwarded-Proto {scheme}
 }
 
+en.{$DOMAIN_NAME} {
+proxy / node:3000 {
+header_upstream Host {host}
+header_upstream X-Real-IP {remote}
+header_upstream X-Forwarded-Proto {scheme}
+}
+
 log stdout
 errors stdout
 gzip
