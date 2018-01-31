@@ -1,31 +1,41 @@
 (function () {
-    app.controller('homeController', function ($scope, $http, $state, $filter) {
-        $scope.post = {};
-        $scope.post.after = 2;
-        $scope.post.busy = false;
-        $scope.post.items = [];
-        $http.get('http://vi.topquiz.co/view/loadmore/1').success(function (response) {
-            if (response.error == "") {
-                $scope.post.items = [];
-            } else {
-                $scope.post.items = response.data;
-            }
-        });
-        $scope.nextPage = function () {
-            if ($scope.post.busy) return;
-            $scope.post.busy = true;
-            $http.get("http://vi.topquiz.co/view/loadmore/" + $scope.post.after).success(function (datas) {
-                if (datas.error == "" || datas.data == '') {
-                } else {
-                    var _items = datas.data;
-                    for (var i = 0; i < _items.length; i++) {
-                        $scope.post.items.push(_items[i]);
-                    }
+    app.directive('ngEnter', function () {
+        return function (scope, element, attrs) {
+            element.bind("keydown keypress", function (event) {
+                if (event.which === 13) {
+                    scope.$apply(function () {
+                        scope.$eval(attrs.ngEnter);
+                    });
+                    event.preventDefault();
                 }
-            }).finally(function () {
-                $scope.post.busy = false;
             });
-            $scope.post.after += 1;
-        }
+        };
+    });
+    app.controller('headerCtrl', function ($scope, $http, $state, $filter, $stateParams, $window) {
+        $scope.post = [];
+        $scope.checkClick = true;
+        $scope.search = function () {
+            $scope.checkClick = true;
+            var key = $scope.keysearch;
+            if (key == '') {
+            } else {
+                $http.get('http://en.topquiz.co/quiz/search/' + key).success(function (response) {
+                    if (response.error == "" || response.items.length == 0) {
+                        $http.get('http://en.topquiz.co/view/hot').success(function (response) {
+                            if (response.error !== "") {
+                                $scope.post = response;
+                            } else {
+                                $scope.post = [];
+                            }
+                        });
+                    } else {
+                        $scope.post = response.items;
+                    }
+                });
+            }
+            angular.element($window).on('click', function (e) {
+                $scope.checkClick = false;
+            });
+        };
     });
 })();

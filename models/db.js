@@ -47,3 +47,4 @@ require('./quizzes');
 require('./questions');
 require('./results');
 require('./users');
+require('./languages');

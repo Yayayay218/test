@@ -33,7 +33,8 @@ var quizSchema = new mongoose.Schema({
     },
     updatedAt: Date,
     results: [resultSchema],
-    questions: [questionSchema]
+    questions: [questionSchema],
+    language: {type: Schema.Types.ObjectId, ref: 'Languages'}
 });
 
 quizSchema.plugin(mongoosePaginate);

@@ -21,7 +21,6 @@ angular.module('YQuiz')
             };
             img.src = url;
         }
-
         $scope.screenState = 'myQuiz';
         $scope.editState = false;
         $scope.totalQuizzes = 0;
@@ -32,6 +31,18 @@ angular.module('YQuiz')
         $scope.pageChanged = function (newPage) {
             getResultsPage(newPage);
         };
+        $scope.changeLanguage = function () {
+            console.log($scope.quiz.language)
+        }
+        $scope.languageOpts = quizService
+            .languageGet()
+            .catch(function (e) {
+                console.log(e)
+            })
+            .then(function (res) {
+                $scope.languageOpts = res.data.data
+                $scope.language = $scope.languageOpts[0]
+            })
 
         function getResultsPage(pageNumber) {
             // this is just an example, in reality this stuff should be in a service
@@ -101,7 +112,8 @@ angular.module('YQuiz')
                             description: $scope.quiz.description,
                             featuredImg: res,
                             results: $scope.results,
-                            questions: $scope.questions
+                            questions: $scope.questions,
+                            language: $scope.quiz.language._id
                         };
                         quizService.quizUpdate($scope.quiz._id, $scope.data).then(function (res) {
                             Dialog.onSuccess('Success', null, $state.reload())
@@ -230,7 +242,9 @@ angular.module('YQuiz')
                         description: $scope.quiz.description,
                         featuredImg: res,
                         results: $scope.results,
-                        questions: $scope.questions
+                        questions: $scope.questions,
+                        language: $scope.language._id
+
                     };
                     quizService.quizCreate($scope.data).then(function (res) {
                         Dialog.onSuccess('Success', null, $state.reload())

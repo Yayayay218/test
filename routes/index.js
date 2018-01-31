@@ -10,10 +10,9 @@ var auth = jwt({
 });
 
 var ctrlQuiz = require('../controllers/quiz.controller');
-var ctrlQuestion = require('../controllers/question.controller');
-var ctrlResult = require('../controllers/result.controller');
 var ctrlFile = require('../controllers/file.controller');
 var authCtrl = require('../controllers/auth');
+var langCtrl = require('../controllers/language.controller')
 
 router.post('/auth/register', authCtrl.register);
 router.post('/auth/login', authCtrl.login);
@@ -24,6 +23,10 @@ router.get('/quizzes', ctrlQuiz.quizGetAll);
 router.get('/quizzes/:id', ctrlQuiz.quizGetOne);
 router.put('/quizzes/:id', ctrlQuiz.quizPUT);
 router.delete('/quizzes/:id', ctrlQuiz.quizDEL);
+
+//  Language APIs
+router.post('/languages', langCtrl.languagePOST);
+router.get('/languages', langCtrl.resultGetAll);
 
 //  Question APIs
 // router.post('/questions', ctrlQuestion.questionPOST);

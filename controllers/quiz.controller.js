@@ -68,7 +68,6 @@ module.exports.quizPOST = function (req, res) {
     req.body.slug = slug(req.body.title);
     var data = req.body;
     getImg(data.results).then(function (result) {
-        console.log(result)
         data.results = result;
         getImg(data.questions).then(function (question) {
             data.questions = question;
@@ -105,6 +104,7 @@ module.exports.quizGetAll = function (req, res) {
         query,
         {
             sort: sort,
+            populate: 'language',
             page: Number(page),
             limit: Number(limit)
         }, function (err, quiz) {

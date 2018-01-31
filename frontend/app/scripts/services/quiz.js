@@ -46,6 +46,10 @@ function quizService(API, $http, $q) {
         return $http.post(API.URL + 'quizzes', formData)
     };
 
+    var languageGet = function () {
+        return $http.get(API.URL + 'languages')
+    }
+
     return {
         quizGetAll: quizGetAll,
         quizGetOne: quizGetOne,
@@ -54,6 +58,7 @@ function quizService(API, $http, $q) {
         quizCreate: quizCreate,
         uploadPhoto: uploadPhoto,
         quizUpdate: quizUpdate,
-        quizDelete: quizDelete
+        quizDelete: quizDelete,
+        languageGet: languageGet
     }
 }
