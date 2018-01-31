@@ -5,18 +5,22 @@ angular.module('YQuiz')
         let host = $location.host();
         let parts = host.split('.');
         let subdomain = parts[0]
-        console.log(subdomain)
         switch (subdomain) {
             case 'en': {
                 $scope.languageName = 'English'
+                $scope.query = '&language=5a71343424b246000e1b8262'
                 break
             }
 
             case 'vi': {
                 $scope.languageName = 'Tiếng Việt'
+                $scope.query = '&language=5a71343d24b246000e1b8263'
                 break
             }
-            default: $scope.languageName = 'English'
+            default: {
+                $scope.query = '&language=5a71343424b246000e1b8262'
+                $scope.languageName = 'English'
+            }
         }
 
         $scope.showFirst = true;
@@ -33,7 +37,7 @@ angular.module('YQuiz')
         $scope.quizzes.busy = false;
 
         $scope.items = quizService
-            .quizGetAll(1)
+            .quizGetAll(1, $scope.query)
             .catch(function (e) {
                 console.log(e)
             })
@@ -43,7 +47,7 @@ angular.module('YQuiz')
         $scope.loadMore = function () {
             if ($scope.quizzes.busy) return;
             $scope.quizzes.busy = true;
-            $http.get(API.URL + 'quizzes?sort=-_id&page=' + $scope.page).then(function (datas) {
+            $http.get(API.URL + 'quizzes?sort=-_id&page=' + $scope.page + $scope.query).then(function (datas) {
                 if (datas.data.data.length === 0) {
                 } else {
                     var _items = datas.data.data;
