@@ -2,6 +2,23 @@
 
 angular.module('YQuiz')
     .controller('detailCtrl', function ($scope, Socialshare, quizService, $stateParams, $location, $timeout, $http, API, ezfb, ngMeta) {
+        let host = $location.host();
+        let parts = host.split('.');
+        let subdomain = parts[0]
+        console.log(subdomain)
+        switch (subdomain) {
+            case 'en': {
+                $scope.languageName = 'English'
+                break
+            }
+
+            case 'vi': {
+                $scope.languageName = 'Tiếng Việt'
+                break
+            }
+            default: $scope.languageName = 'English'
+        }
+
         $scope.showFirst = true;
         $scope.showSecond = false;
         $scope.showResult = false;

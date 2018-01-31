@@ -1,4 +1,4 @@
-<header class="yquizz-header">
+<header class="yquizz-header" ng-controller="detailCtrl">
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="row">
@@ -12,9 +12,10 @@
                         <li class="yquizz-lang">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    English <span class="caret"></span></button>
+                                    {{languageName}} <span class="caret"></span></button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="https://vi.yquizz.com">VietNam</a></li>
+                                    <li><a href="https://en.yquizz.com">English</a></li>
+                                    <li><a href="https://vi.yquizz.com">Tiếng Việt</a></li>
                                 </ul>
                             </div>
                         </li>
