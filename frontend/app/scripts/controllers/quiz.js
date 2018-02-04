@@ -5,23 +5,23 @@ angular.module('YQuiz')
         let host = $location.host();
         let parts = host.split('.');
         let subdomain = parts[0]
-        // switch (subdomain) {
-        //     case 'en': {
-        //         $scope.languageName = 'English'
-        //         $scope.query = '&language=5a71343424b246000e1b8262'
-        //         break
-        //     }
-        //
-        //     case 'vi': {
-        //         $scope.languageName = 'Tiếng Việt'
-        //         $scope.query = '&language=5a71343d24b246000e1b8263'
-        //         break
-        //     }
-        //     default: {
-        //         $scope.query = '&language=5a71343424b246000e1b8262'
-        //         $scope.languageName = 'English'
-        //     }
-        // }
+        switch (subdomain) {
+            case 'en': {
+                $scope.languageName = 'English'
+                $scope.query = '&language=5a71343424b246000e1b8262'
+                break
+            }
+
+            case 'vi': {
+                $scope.languageName = 'Tiếng Việt'
+                $scope.query = '&language=5a71343d24b246000e1b8263'
+                break
+            }
+            default: {
+                $scope.query = '&language=5a71343424b246000e1b8262'
+                $scope.languageName = 'English'
+            }
+        }
 
         $scope.showFirst = true;
         $scope.showSecond = false;
@@ -92,7 +92,7 @@ angular.module('YQuiz')
                             object: {
                                 'og:url': $scope.urlFB,
                                 'og:title': $scope.titleShare,
-                                'og:image': 'https://yquizz.com/' + $scope.thumbShare
+                                'og:image': 'https://en.yquizz.com/' + $scope.thumbShare
                             }
                         })
                     }, function (response) {
@@ -125,7 +125,7 @@ angular.module('YQuiz')
 
                     $scope.randResult = $scope.results.filter(item => item.point >= $scope.count).length !== 0 ?
                         $scope.results.filter(item => item.point >= $scope.count) : $scope.results
-                    $scope.thumbShare = $scope.randResult[0].featuredImg
+                    $scope.thumbShare = 'https://en.yquizz.com/' + $scope.randResult[0].featuredImg
 
                     $scope.showSecond = false;
                     $scope.showResult = true;
