@@ -134,7 +134,7 @@ angular.module('YQuiz')
                                 object: {
                                     'og:url': $scope.urlFB,
                                     'og:title': $scope.titleShare,
-                                    'og:image': 'https://en.yquizz.com/' + $scope.thumbShare
+                                    'og:image': $scope.thumbShare
                                 }
                             })
                         }, function (response) {
