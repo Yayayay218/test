@@ -126,6 +126,7 @@ angular.module('YQuiz')
                     $scope.randResult = $scope.results.filter(item => item.point >= $scope.count).length !== 0 ?
                         $scope.results.filter(item => item.point >= $scope.count) : $scope.results
                     $scope.thumbShare = 'https://en.yquizz.com/' + $scope.randResult[0].featuredImg
+                    console.log($scope.thumbShare)
                     $scope.shareFB = function () {
                         FB.ui({
                             method: 'share_open_graph',
