@@ -126,6 +126,20 @@ angular.module('YQuiz')
                     $scope.randResult = $scope.results.filter(item => item.point >= $scope.count).length !== 0 ?
                         $scope.results.filter(item => item.point >= $scope.count) : $scope.results
                     $scope.thumbShare = 'https://en.yquizz.com/' + $scope.randResult[0].featuredImg
+                    $scope.shareFB = function () {
+                        FB.ui({
+                            method: 'share_open_graph',
+                            action_type: 'og.shares',
+                            action_properties: JSON.stringify({
+                                object: {
+                                    'og:url': $scope.urlFB,
+                                    'og:title': $scope.titleShare,
+                                    'og:image': 'https://en.yquizz.com/' + $scope.thumbShare
+                                }
+                            })
+                        }, function (response) {
+                        });
+                    };
 
                     $scope.showSecond = false;
                     $scope.showResult = true;
