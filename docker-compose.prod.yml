@@ -37,7 +37,7 @@ services:
       - node
     volumes:
       - caddy:/root/.caddy
-      - node_statis:/var/www
+      - node_static:/var/www
     environment:
       - DOMAIN_NAME=yquizz.com
     ports:
