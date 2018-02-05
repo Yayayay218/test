@@ -29,6 +29,7 @@ en.{$DOMAIN_NAME} {
         if_op or
         to {path} {path}/ /
     }
+    log stdout
     errors stdout
     gzip
 }
