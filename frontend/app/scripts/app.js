@@ -63,7 +63,7 @@ YQuiz.config(function ($stateProvider, $urlRouterProvider, $locationProvider, ez
         })
 
     $locationProvider.html5Mode(true);
-    // $locationProvider.hashPrefix('!');
+    $locationProvider.hashPrefix('!');
     ngMetaProvider.setDefaultTitle('Yquizz.com - The funniest quizzes');
     paginationTemplateProvider.setPath('../bower_components/angularUtils-pagination/dirPagination.tpl.html');
     // ezfbProvider.setInitParams({appId: '1706155966071399', version: 'v2.8'});
