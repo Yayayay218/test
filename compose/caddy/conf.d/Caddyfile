@@ -26,7 +26,7 @@ en.{$DOMAIN_NAME} {
         if {path} not_has api
         if {path} not_has storage
         if {path} not_has ?_escaped_fragment_=
-        if_op or
+        if_op and
         to {path} {path}/ /
     }
     log stdout
@@ -51,7 +51,7 @@ vi.{$DOMAIN_NAME} {
         if {path} not_has api
         if {path} not_has storage
         if {path} not_has ?_escaped_fragment_=
-        if_op or
+        if_op and
         to {path} {path}/ /
     }
     log stdout
