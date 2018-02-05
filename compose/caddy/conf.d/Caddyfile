@@ -23,7 +23,7 @@ en.{$DOMAIN_NAME} {
     root /var/www
 
     rewrite {
-        to {path} {path}/ /proxy/{uri}
+        to {path} {path}/ /
     }
     log stdout
     errors stdout
@@ -44,7 +44,7 @@ vi.{$DOMAIN_NAME} {
     root /var/www
 
     rewrite {
-        to {path} {path}/ /proxy/{uri}
+        to {path} {path}/ /
     }
 
     log stdout
