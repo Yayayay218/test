@@ -11,6 +11,11 @@ redir / https://en.yquizz.com{uri}
 
 en.{$DOMAIN_NAME} {
 proxy / node:3000 {
+except /bower_components
+except /images
+except /scripts
+except /styles
+except /views
 header_upstream Host {host}
 header_upstream X-Real-IP {remote}
 header_upstream X-Forwarded-Proto {scheme}
@@ -26,6 +31,11 @@ gzip
 
 vi.{$DOMAIN_NAME} {
 proxy / node:3000 {
+except /bower_components
+except /images
+except /scripts
+except /styles
+except /views
 header_upstream Host {host}
 header_upstream X-Real-IP {remote}
 header_upstream X-Forwarded-Proto {scheme}
