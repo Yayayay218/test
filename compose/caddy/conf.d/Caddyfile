@@ -1,10 +1,10 @@
 www.{$DOMAIN_NAME} {
-redir https://en.yquizz.com/#!
+redir / https://en.yquizz.com{uri}
 
 }
 
 {$DOMAIN_NAME} {
-redir https://en.yquizz.com/#!
+redir / https://en.yquizz.com{uri}
 
 }
 
