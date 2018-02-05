@@ -24,19 +24,11 @@ en.{$DOMAIN_NAME} {
 
     rewrite {
         if {path} not_has api
+        if {path} not_has storage
+        if {path} not_has ?_escaped_fragment_=
+        if_op or
         to {path} {path}/ /
     }
-
-      rewrite {
-            if {path} not_has storage
-            to {path} {path}/ /
-        }
-
-        rewrite {
-            if {path} not_has ?_escaped_fragment_=
-             to {path} {path}/ /
-        }
-    log stdout
     errors stdout
     gzip
 }
@@ -55,20 +47,12 @@ vi.{$DOMAIN_NAME} {
     root /var/www
 
     rewrite {
-        if {path} not_has html
-        to {path} {path}/ /
-    }
-
-    rewrite {
+        if {path} not_has api
         if {path} not_has storage
+        if {path} not_has ?_escaped_fragment_=
+        if_op or
         to {path} {path}/ /
     }
-
-    rewrite {
-        if {path} not_has ?_escaped_fragment_=
-         to {path} {path}/ /
-    }
-
     log stdout
     errors stdout
     gzip
