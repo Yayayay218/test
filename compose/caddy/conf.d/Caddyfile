@@ -23,7 +23,7 @@ en.{$DOMAIN_NAME} {
     root /var/www
 
     rewrite {
-        if {path} has html
+        if {path} not_has api
         to {path} {path}/ /
     }
     log stdout
@@ -45,7 +45,7 @@ vi.{$DOMAIN_NAME} {
     root /var/www
 
     rewrite {
-        if {path} has html
+        if {path} not_has html
         to {path} {path}/ /
     }
 
