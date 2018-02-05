@@ -16,7 +16,6 @@ en.{$DOMAIN_NAME} {
     except /scripts
     except /styles
     except /views
-    except /api
     header_upstream Host {host}
     header_upstream X-Real-IP {remote}
     header_upstream X-Forwarded-Proto {scheme}
@@ -38,7 +37,6 @@ vi.{$DOMAIN_NAME} {
         except /scripts
         except /styles
         except /views
-        except /api
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -49,6 +47,17 @@ vi.{$DOMAIN_NAME} {
         to {path} {path}/ /
     }
 
+    log stdout
+    errors stdout
+    gzip
+}
+
+api.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
     log stdout
     errors stdout
     gzip
