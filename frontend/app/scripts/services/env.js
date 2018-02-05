@@ -2,6 +2,6 @@
 
 angular.module('YQuiz')
     .constant('API', {
-        URL: 'https://a.yquizz.com/api/'
+        URL: /api/
         // URL: 'https://yquizz.com/api/'
     });
