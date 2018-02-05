@@ -49,6 +49,16 @@ vi.{$DOMAIN_NAME} {
         to {path} {path}/ /
     }
 
+    rewrite {
+        if {path} not_has image
+        to {path} {path}/ /
+    }
+
+    rewrite {
+        if {path} not_has ?_escaped_fragment_=
+         to {path} {path}/ /
+    }
+
     log stdout
     errors stdout
     gzip
