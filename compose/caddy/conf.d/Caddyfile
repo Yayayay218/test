@@ -26,6 +26,16 @@ en.{$DOMAIN_NAME} {
         if {path} not_has api
         to {path} {path}/ /
     }
+
+      rewrite {
+            if {path} not_has storage
+            to {path} {path}/ /
+        }
+
+        rewrite {
+            if {path} not_has ?_escaped_fragment_=
+             to {path} {path}/ /
+        }
     log stdout
     errors stdout
     gzip
@@ -50,7 +60,7 @@ vi.{$DOMAIN_NAME} {
     }
 
     rewrite {
-        if {path} not_has image
+        if {path} not_has storage
         to {path} {path}/ /
     }
 
