@@ -10,41 +10,44 @@ redir / https://en.yquizz.com{uri}
 
 
 en.{$DOMAIN_NAME} {
-proxy / node:3000 {
-except /bower_components
-except /images
-except /scripts
-except /styles
-except /views
-header_upstream Host {host}
-header_upstream X-Real-IP {remote}
-header_upstream X-Forwarded-Proto {scheme}
+    proxy / node:3000 {
+    except /bower_components
+    except /images
+    except /scripts
+    except /styles
+    except /views
+    header_upstream Host {host}
+    header_upstream X-Real-IP {remote}
+    header_upstream X-Forwarded-Proto {scheme}
 }
+    root /var/www
 
-rewrite {
-    to {path} {path}/ /proxy/{uri}
-}
-log stdout
-errors stdout
-gzip
+    rewrite {
+        to {path} {path}/ /proxy/{uri}
+    }
+    log stdout
+    errors stdout
+    gzip
 }
 
 vi.{$DOMAIN_NAME} {
-proxy / node:3000 {
-except /bower_components
-except /images
-except /scripts
-except /styles
-except /views
-header_upstream Host {host}
-header_upstream X-Real-IP {remote}
-header_upstream X-Forwarded-Proto {scheme}
-}
-rewrite {
-    to {path} {path}/ /proxy/{uri}
-}
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
 
-log stdout
-errors stdout
-gzip
+    rewrite {
+        to {path} {path}/ /proxy/{uri}
+    }
+
+    log stdout
+    errors stdout
+    gzip
 }
