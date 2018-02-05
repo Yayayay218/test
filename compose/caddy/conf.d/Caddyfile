@@ -16,7 +16,9 @@ header_upstream X-Real-IP {remote}
 header_upstream X-Forwarded-Proto {scheme}
 }
 
-
+rewrite {
+    to {path} {path}/ /
+}
 log stdout
 errors stdout
 gzip
@@ -27,6 +29,9 @@ proxy / node:3000 {
 header_upstream Host {host}
 header_upstream X-Real-IP {remote}
 header_upstream X-Forwarded-Proto {scheme}
+}
+rewrite {
+    to {path} {path}/ /
 }
 
 log stdout
