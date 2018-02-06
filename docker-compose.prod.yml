@@ -3,7 +3,7 @@ version: '2'
 volumes:
   mongo_data: {}
   caddy: {}
-  node_static: {}
+  node_static_v2: {}
 
 services:
   node:
@@ -17,7 +17,7 @@ services:
       DATABASE_URL: "mongodb://mongo:27017/quiz"
     volumes:
       - /home/app/quiz-backend/storage
-      - node_static:/home/app/quiz-backend/frontend/app
+      - node_static_v2:/home/app/quiz-backend/frontend/app
     ports:
       - '3000:3000'
     depends_on:
@@ -37,7 +37,7 @@ services:
       - node
     volumes:
       - caddy:/root/.caddy
-      - node_static:/var/www
+      - node_static_v2:/var/www
     environment:
       - DOMAIN_NAME=yquizz.com
     ports:
