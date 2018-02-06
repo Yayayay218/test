@@ -1,17 +1,16 @@
 www.{$DOMAIN_NAME} {
-redir https://en.yquizz.com
+redir / https://en.yquizz.com{uri}
 
 }
 
 {$DOMAIN_NAME} {
-redir https://en.yquizz.com
+redir / https://en.yquizz.com{uri}
 
 }
 
 
 en.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
         except /images
         except /scripts
         except /styles
@@ -25,6 +24,7 @@ en.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
         if_op and
         to {path} {path}/ /
     }
