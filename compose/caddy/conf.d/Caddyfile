@@ -11,10 +11,6 @@ redir / https://en.yquizz.com{uri}
 
 en.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -25,6 +21,10 @@ en.{$DOMAIN_NAME} {
         if {path} not_has api
         if {path} not_has storage
         if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -35,11 +35,6 @@ en.{$DOMAIN_NAME} {
 
 vi.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -49,6 +44,11 @@ vi.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -59,11 +59,6 @@ vi.{$DOMAIN_NAME} {
 
 pt.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -73,6 +68,11 @@ pt.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -83,11 +83,6 @@ pt.{$DOMAIN_NAME} {
 
 fr.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -97,6 +92,11 @@ fr.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -107,11 +107,6 @@ fr.{$DOMAIN_NAME} {
 
 ko.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -121,6 +116,11 @@ ko.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -131,11 +131,6 @@ ko.{$DOMAIN_NAME} {
 
 th.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -145,6 +140,11 @@ th.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
@@ -155,11 +155,6 @@ th.{$DOMAIN_NAME} {
 
 tw.{$DOMAIN_NAME} {
     proxy / node:3000 {
-        except /bower_components
-        except /images
-        except /scripts
-        except /styles
-        except /views
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
@@ -169,6 +164,11 @@ tw.{$DOMAIN_NAME} {
     rewrite {
         if {path} not_has api
         if {path} not_has storage
+        if {path} not_has bower_components
+        if {path} not_has images
+        if {path} not_has scripts
+        if {path} not_has styles
+        if {path} not_has views
         if_op and
         to {path} {path}/ /
     }
