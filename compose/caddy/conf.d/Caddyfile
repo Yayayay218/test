@@ -56,3 +56,123 @@ vi.{$DOMAIN_NAME} {
     errors stdout
     gzip
 }
+
+pt.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
+
+    rewrite {
+        if {path} not_has api
+        if {path} not_has storage
+        if_op and
+        to {path} {path}/ /
+    }
+    log stdout
+    errors stdout
+    gzip
+}
+
+fr.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
+
+    rewrite {
+        if {path} not_has api
+        if {path} not_has storage
+        if_op and
+        to {path} {path}/ /
+    }
+    log stdout
+    errors stdout
+    gzip
+}
+
+ko.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
+
+    rewrite {
+        if {path} not_has api
+        if {path} not_has storage
+        if_op and
+        to {path} {path}/ /
+    }
+    log stdout
+    errors stdout
+    gzip
+}
+
+th.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
+
+    rewrite {
+        if {path} not_has api
+        if {path} not_has storage
+        if_op and
+        to {path} {path}/ /
+    }
+    log stdout
+    errors stdout
+    gzip
+}
+
+tw.{$DOMAIN_NAME} {
+    proxy / node:3000 {
+        except /bower_components
+        except /images
+        except /scripts
+        except /styles
+        except /views
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    root /var/www
+
+    rewrite {
+        if {path} not_has api
+        if {path} not_has storage
+        if_op and
+        to {path} {path}/ /
+    }
+    log stdout
+    errors stdout
+    gzip
+}

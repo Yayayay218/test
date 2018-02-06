@@ -17,6 +17,36 @@ angular.module('YQuiz')
                 $scope.query = '&language=5a71343d24b246000e1b8263'
                 break
             }
+
+            case 'pt': {
+                $scope.languageName = 'Português'
+                $scope.query = '&language=5a799b5457c379000e38582e'
+                break
+            }
+
+            case 'fr': {
+                $scope.languageName = 'Français'
+                $scope.query = '&language=5a799b5b57c379000e38582f'
+                break
+            }
+
+            case 'ko': {
+                $scope.languageName = '한국의'
+                $scope.query = '&language=5a799b6257c379000e385830'
+                break
+            }
+
+            case 'th': {
+                $scope.languageName = 'ไทย'
+                $scope.query = '&language=5a799b6757c379000e385831'
+                break
+            }
+
+            case 'tw': {
+                $scope.languageName = '中文'
+                $scope.query = '&language=5a799b9057c379000e385832'
+                break
+            }
             default: {
                 $scope.query = '&language=5a71343424b246000e1b8262'
                 $scope.languageName = 'English'
