@@ -15,7 +15,7 @@ en.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-
+    root /var/www
     rewrite {
         if {path} has _escaped_fragment_=
         to {path} {path}/ /
