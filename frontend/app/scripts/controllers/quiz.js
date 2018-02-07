@@ -66,6 +66,25 @@ angular.module('YQuiz')
         $scope.items = [];
         $scope.quizzes.busy = false;
 
+        $scope.search = null
+        $scope.doSearch = function () {
+            console.log($scope.search)
+            $scope.checkClicked = true
+            quizService
+                .quizSearch('?search=' + $scope.search + $scope.query)
+                .catch(function (e) {
+                    console.log(e)
+                })
+                .then(function (res) {
+                    console.log(res)
+                    $scope.searchResults = res.data.data
+                })
+        }
+
+        $scope.onClickSearch = function () {
+            $scope.checkClicked = false
+        }
+
         $scope.items = quizService
             .quizGetAll(1, $scope.query)
             .catch(function (e) {

@@ -50,6 +50,10 @@ function quizService(API, $http, $q) {
         return $http.get(API.URL + 'languages')
     }
 
+    var quizSearch = function (query) {
+        return $http.get(API.URL + 'quiz/search'+ query)
+    }
+
     return {
         quizGetAll: quizGetAll,
         quizGetOne: quizGetOne,
@@ -59,6 +63,7 @@ function quizService(API, $http, $q) {
         uploadPhoto: uploadPhoto,
         quizUpdate: quizUpdate,
         quizDelete: quizDelete,
-        languageGet: languageGet
+        languageGet: languageGet,
+        quizSearch: quizSearch
     }
 }

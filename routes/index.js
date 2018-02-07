@@ -23,6 +23,7 @@ router.get('/quizzes', ctrlQuiz.quizGetAll);
 router.get('/quizzes/:id', ctrlQuiz.quizGetOne);
 router.put('/quizzes/:id', ctrlQuiz.quizPUT);
 router.delete('/quizzes/:id', ctrlQuiz.quizDEL);
+router.get('/quiz/search', ctrlQuiz.searchQuiz);
 
 //  Language APIs
 router.post('/languages', langCtrl.languagePOST);

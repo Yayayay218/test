@@ -96,10 +96,11 @@ module.exports.quizGetAll = function (req, res) {
     delete req.query.page;
     const limit = req.query.limit;
     delete req.query.limit;
-    var query = req.query || {};
 
     var sort = req.query.sort || '-createdAt';
     delete req.query.sort;
+    var query = req.query || {};
+
     Quizzes.paginate(
         query,
         {
@@ -193,3 +194,26 @@ module.exports.quizPUT = function (req, res) {
         console.log(err)
     })
 };
+
+module.exports.searchQuiz = function (req, res) {
+    var search = req.query.search
+    var language = req.query.language
+    delete req.query.language
+    delete req.query.search
+    Quizzes.find({
+        title: {
+            $regex: search, $options: 'i'
+        },
+        language: language
+    }, function (err, quiz) {
+        if (err)
+            return sendJSONResponse(res, HTTPStatus.BAD_REQUEST, {
+                success: false,
+                message: err
+            })
+        sendJSONResponse(res, HTTPStatus.OK, {
+            success: true,
+            data: quiz
+        })
+    })
+}

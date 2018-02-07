@@ -1091,3 +1091,25 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.search-box {
+    position: absolute;
+    z-index: 20;
+    margin-top: 8px;
+    background-color: rgba(255, 255, 255, 0.89);
+    border-radius: 5px;
+    width: 84%;
+    right: 15px;
+    top: 73px;
+}
+
+.search-box a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #43484d;
+}
+
+.search-box .search-item:hover {
+    background-color: #d4d7db;
+}

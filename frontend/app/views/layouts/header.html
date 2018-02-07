@@ -30,10 +30,22 @@
                     <form class="navbar-form navbar-right">
                         <div class="form-group">
                             <input type="text" class="form-control search-input" placeholder="Search Something..."
+                                   ng-model="search"
+                                   ng-change="doSearch()"
                                    style="margin: 0 auto">
                             <span class="yquizz-icon-search"></span>
                         </div>
                     </form>
+                    <div class="search-box" ng-show="searchResults && checkClicked">
+                        <div class="search-item" ng-repeat="item in searchResults | limitTo: 5" style="margin: 15px;">
+                            <a ui-sref="detail({slug: item.slug})" href="" ng-click="onClickSearch()">
+                                <div style="display: inline-flex" class="item-wrapped">
+                                    <img ng-src="{{item.featuredImg}}" alt="" width="100px" height="55px">
+                                    <p style="padding-left: 5px">{{item.title}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
