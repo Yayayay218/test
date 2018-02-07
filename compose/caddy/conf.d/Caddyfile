@@ -15,19 +15,7 @@ en.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -39,19 +27,7 @@ vi.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -63,19 +39,7 @@ pt.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -87,19 +51,7 @@ fr.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -111,19 +63,7 @@ ko.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -135,19 +75,7 @@ th.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip
@@ -159,19 +87,7 @@ tw.{$DOMAIN_NAME} {
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
     }
-    root /var/www
 
-    rewrite {
-        if {path} not_has api
-        if {path} not_has storage
-        if {path} not_has bower_components
-        if {path} not_has images
-        if {path} not_has scripts
-        if {path} not_has styles
-        if {path} not_has views
-        if_op and
-        to {path} {path}/ /
-    }
     log stdout
     errors stdout
     gzip

@@ -17,11 +17,8 @@ require('./helpers/lib/passport');
 var cors = require('cors'); // call the cors to fix access control bug.
 
 app.use(cors());
-app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
-app.use(require('prerender-node').set('afterRender', function (err, req, prerender_res) {
-    console.log('URL: ', req.url);
-    // do whatever you need to do
-}));
+app.use(require('prerender-node')
+    .set('prerenderToken', '7NZWzakXqAatE9KUxgoA'))
 var routesApi = require('./routes/index');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,6 +50,9 @@ app.use('/storage/media', express.static(path.join(__dirname, 'storage/media')))
 //     res.sendFile(path.join(__dirname, 'quiz-frontend', 'app', 'index.html'));
 // });
 // app.use('/', express.static(__dirname + 'quiz-frontend', 'app', 'index.html'));
+// This will ensure that all routing is handed over to AngularJS
+
+
 
 var optionsRef = {
     filter: ['relative', 'remote'],
@@ -72,6 +72,8 @@ JsonRefs.resolveRefsAt('./swagger/index.yaml', optionsRef).then(function (result
 });
 
 app.use('/api', routesApi);
-
+app.get('*', function (req, res) {
+    res.sendfile(path.resolve('frontend/app/index.html'))
+})
 
 module.exports = app;
