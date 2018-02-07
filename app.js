@@ -18,7 +18,10 @@ var cors = require('cors'); // call the cors to fix access control bug.
 
 app.use(cors());
 app.use(require('prerender-node').set('prerenderToken', '7NZWzakXqAatE9KUxgoA'));
-
+app.use(require('prerender-node').set('afterRender', function (err, req, prerender_res) {
+    console.log('URL: ', req.url);
+    // do whatever you need to do
+}));
 var routesApi = require('./routes/index');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
