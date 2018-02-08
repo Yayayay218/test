@@ -192,7 +192,7 @@ function clickAds() {
         value: 0.1,
         currency: "USD",
         adsNumber: id_ads
-    }), fbq("track", "Purchase", {siteUrl: a, content_ID: d, value: e, currency: "USD", adsNumber: id_ads})
+    }), fbq("track", "Purchase", {siteUrl: a, content_ID: d, value: 0.1, currency: "USD", adsNumber: id_ads})
 }
 
 function onContentPauseRequested() {

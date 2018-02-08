@@ -68,7 +68,6 @@ angular.module('YQuiz')
 
         $scope.search = null
         $scope.doSearch = function () {
-            console.log($scope.search)
             $scope.checkClicked = true
             quizService
                 .quizSearch('?search=' + $scope.search + $scope.query)
@@ -76,7 +75,6 @@ angular.module('YQuiz')
                     console.log(e)
                 })
                 .then(function (res) {
-                    console.log(res)
                     $scope.searchResults = res.data.data
                 })
         }
@@ -85,14 +83,17 @@ angular.module('YQuiz')
             $scope.checkClicked = false
         }
 
-        $scope.items = quizService
-            .quizGetAll(1, $scope.query)
-            .catch(function (e) {
-                console.log(e)
-            })
-            .then(function (res) {
-                $scope.items = res.data.data;
-            });
+        $scope.init = function () {
+            quizService
+                .quizGetAll(1, $scope.query)
+                .catch(function (e) {
+                    console.log(e)
+                })
+                .then(function (res) {
+                    $scope.items = res.data.data;
+                });
+        }
+        $scope.tmpItems = []
         $scope.loadMore = function () {
             if ($scope.quizzes.busy) return;
             $scope.quizzes.busy = true;
@@ -101,6 +102,7 @@ angular.module('YQuiz')
                 } else {
                     var _items = datas.data.data;
                     for (var i = 0; i < _items.length; i++) {
+                        // $scope.tmpItems.push(_items[i])
                         $scope.items.push(_items[i]);
                     }
                     $scope.quizzes.busy = false;
@@ -111,7 +113,6 @@ angular.module('YQuiz')
             });
             $scope.page += 1;
         };
-
         if ($stateParams.slug) {
             $scope.quizById = quizService
                 .quizGetOne($stateParams.slug)
