@@ -8,6 +8,7 @@ var adsLoader;
 var adDisplayContainer;
 var intervalTimer;
 var videoContent;
+var id_ads = 1;
 
 // var videoContent = document.getElementById('contentElement');
 
@@ -114,7 +115,11 @@ function onAdsManagerLoaded(adsManagerLoadedEvent) {
     adsManager.addEventListener(
         google.ima.AdEvent.Type.COMPLETE,
         onAdEvent);
-    adsManager.addEventListener(google.ima.AdEvent.Type.USER_CLOSE,
+    adsManager.addEventListener(
+        google.ima.AdEvent.Type.CLICK,
+        onAdEvent);
+    adsManager.addEventListener(
+        google.ima.AdEvent.Type.USER_CLOSE,
         onAdEvent);
     try {
         // Initialize the ads manager. Ad rules playlist will start at this time.
@@ -153,8 +158,11 @@ function onAdEvent(adEvent) {
             // remaining time detection.
             ad.isLinear() && clearInterval(intervalTimer);
             break;
+        case google.ima.AdEvent.Type.CLICK:
+            clickAds();
+            break;
         case google.ima.AdEvent.Type.USER_CLOSE:
-            skipAds()
+            close_ads()
     }
 }
 
@@ -175,12 +183,28 @@ function onAdError(adErrorEvent) {
 // function onContentResumeRequested() {
 //     videoContent.addEventListener('ended', contentEndedListener);
 // }
+function clickAds() {
+    var e = 0;
+    1 == id_ads ? e = dataYlinkee.tag_01.value : 2 == id_ads ? e = dataYlinkee.tag_02.value : 3 == id_ads && (e = dataYlinkee.tag_03.value);
+    var a = window.location.href, n = a.split("/"), d = n[n.length - 1], t = d.split("?");
+    t.length > 1 && (d = t[0]), fbq("track", "ClickAds", {
+        siteUrl: a,
+        content_ID: d,
+        value: e,
+        currency: "USD",
+        adsNumber: id_ads
+    }), fbq("track", "Purchase", {siteUrl: a, content_ID: d, value: e, currency: "USD", adsNumber: id_ads})
+}
 
 function onContentPauseRequested() {
     // videoContent.pause();
     // This function is where you should setup UI for showing ads (e.g.
     // display ad timer countdown, disable seeking etc.)
     // console.log('a')
+}
+
+function close_ads() {
+    skipAds(), id_ads++
 }
 
 function onContentResumeRequested() {
