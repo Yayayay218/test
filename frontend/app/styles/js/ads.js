@@ -184,13 +184,12 @@ function onAdError(adErrorEvent) {
 //     videoContent.addEventListener('ended', contentEndedListener);
 // }
 function clickAds() {
-    var e = 0;
-    1 == id_ads ? e = dataYlinkee.tag_01.value : 2 == id_ads ? e = dataYlinkee.tag_02.value : 3 == id_ads && (e = dataYlinkee.tag_03.value);
+    // var e = 0;
+    // 1 == id_ads ? e = dataYlinkee.tag_01.value : 2 == id_ads ? e = dataYlinkee.tag_02.value : 3 == id_ads && (e = dataYlinkee.tag_03.value);
     var a = window.location.href, n = a.split("/"), d = n[n.length - 1], t = d.split("?");
     t.length > 1 && (d = t[0]), fbq("track", "ClickAds", {
         siteUrl: a,
-        content_ID: d,
-        value: e,
+        value: 0.1,
         currency: "USD",
         adsNumber: id_ads
     }), fbq("track", "Purchase", {siteUrl: a, content_ID: d, value: e, currency: "USD", adsNumber: id_ads})
