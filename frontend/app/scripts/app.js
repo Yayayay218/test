@@ -77,7 +77,7 @@ YQuiz.run(function ($rootScope, $state, ngMeta) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
     $rootScope.$on('$viewContentLoaded', function(event) {
-        console.log(event)
+        // console.log(event)
     });
 });
 
