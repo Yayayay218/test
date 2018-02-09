@@ -14,6 +14,11 @@ en.{$DOMAIN_NAME} {
         header_upstream X-Forwarded-Proto {scheme}
     }
 
+    rewrite {
+    	if {>User-agent} has facebook
+    	to {path} {path}/ /
+    }
+
     log stdout
     errors stdout
     gzip
