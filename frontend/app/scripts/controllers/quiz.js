@@ -12,9 +12,9 @@ angular.module('YQuiz')
                 break
             }
 
-            case 'vi': {
-                $scope.languageName = 'Tiếng Việt'
-                $scope.query = '&language=5a71343d24b246000e1b8263'
+            case 'ru': {
+                $scope.languageName = 'Russian'
+                $scope.query = '&language=5a7cfcf601e793000e075ceb'
                 break
             }
 
