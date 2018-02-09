@@ -14,9 +14,11 @@ var YAML = require('js-yaml');
 require('./models/db');
 require('./helpers/lib/passport');
 
-app.use(require('prerender-node')
-    .set('prerenderToken', '7NZWzakXqAatE9KUxgoA'))
-    .set('prerenderServiceUrl', 'https://arcane-escarpment-49546.herokuapp.com/')
+// app.use(require('prerender-node')
+//     .set('prerenderToken', '7NZWzakXqAatE9KUxgoA'))
+const prerendercloud = require('prerendercloud');
+prerendercloud.set('prerenderToken', 'dXMtd2VzdC0yOmE5MWRjNDAxLTM1MTctNDkwMS05MGRmLWM2ZjRmYzRiMDM1OQ.9crR2tOL_DhT29RcsntCWc7Stl5NY2Zs0JwcgqbK81k')
+app.use(prerendercloud);
 
 var cors = require('cors'); // call the cors to fix access control bug.
 
