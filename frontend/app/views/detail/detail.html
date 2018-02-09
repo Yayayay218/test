@@ -104,14 +104,15 @@
             <!--</div>-->
             <div class="row" style="margin-top: 20px">
                 <div class="col-md-4" ng-repeat="quiz in items | limitTo: 6">
-                    <div class="yquizz-list-sm custom-yquizz-list" style="width: 240px">
+                    <div class="yquizz-list-sm custom-yquizz-list" style="height: 240px">
                         <div class="yquizz-img-sm">
                             <a ui-sref="detail({slug: quiz.slug})" href=""><img ng-src="{{quiz.featuredImg}}"
-                                                                                alt="" height="130px"></a>
+                                                                                alt="" style="height: 130px"></a>
                         </div>
                         <div class="yquizz-list-content-sm">
                             <!--<i class="fa fa-eye" style="margin-top: 15px"></i> 2108-->
-                            <h3><a ui-sref="detail({slug: quiz.slug})" href="" style="font-size: 24px">{{quiz.title}}</a></h3>
+                            <h3><a ui-sref="detail({slug: quiz.slug})" href=""
+                                   style="font-size: 24px">{{quiz.title}}</a></h3>
                         </div>
                     </div>
                 </div>
