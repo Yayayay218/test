@@ -62,7 +62,7 @@ YQuiz.config(function ($stateProvider, $urlRouterProvider, $locationProvider, ez
             }
         })
 
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
     ngMetaProvider.setDefaultTitle('Yquizz.com - The funniest quizzes');
     paginationTemplateProvider.setPath('../bower_components/angularUtils-pagination/dirPagination.tpl.html');
@@ -75,9 +75,6 @@ YQuiz.run(function ($rootScope, $state, ngMeta) {
     ngMeta.init();
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-    });
-    $rootScope.$on('$viewContentLoaded', function(event) {
-        window.prerenderReady = true
     });
 });
 
