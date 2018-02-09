@@ -92,8 +92,20 @@ angular.module('YQuiz')
                 .then(function (res) {
                     $scope.items = res.data.data;
                 });
+            if ($stateParams.slug)
+                $scope.quizById = quizService
+                    .quizGetOne($stateParams.slug)
+                    .catch(function (e) {
+                        console.log(e)
+                    })
+                    .then(function (res) {
+                        $scope.quizById = res.data.data;
+                        var image = 'https://en.yquizz.com/' + $scope.quizById[0].featuredImg;
+                        ngMeta.setTitle($scope.quizById[0].title);
+                        ngMeta.setTag('description', $scope.quizById[0].description);
+                        ngMeta.setTag('image', image)
+                    });
         }
-        $scope.tmpItems = []
         $scope.loadMore = function () {
             if ($scope.quizzes.busy) return;
             $scope.quizzes.busy = true;
