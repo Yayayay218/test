@@ -1,9 +1,9 @@
 www.{$DOMAIN_NAME} {
-    redir / https://en.yquizz.com
+    redir https://en.yquizz.com
 }
 
 {$DOMAIN_NAME} {
-    redir / https://en.yquizz.com
+    redir https://en.yquizz.com
 }
 
 
@@ -12,11 +12,6 @@ en.{$DOMAIN_NAME} {
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
-    }
-
-    rewrite {
-    	if {>User-agent} has facebook
-    	to {path} {path}/ /
     }
 
     log stdout

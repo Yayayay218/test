@@ -140,6 +140,7 @@ angular.module('YQuiz')
                     ngMeta.setTag('description', $scope.quizById[0].description);
                     ngMeta.setTag('image', image)
                 });
+            console.log($scope.quizById)
             $timeout(function () {
 
                 $scope.urlFB = window.location.href;
