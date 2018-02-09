@@ -64,6 +64,7 @@ angular.module('YQuiz')
         $scope.page = 2;
         $scope.quizzes = {};
         $scope.items = [];
+        $scope.quizById = [];
         $scope.quizzes.busy = false;
 
         $scope.search = null
@@ -92,6 +93,20 @@ angular.module('YQuiz')
                 .then(function (res) {
                     $scope.items = res.data.data;
                 });
+            if ($stateParams.slug) {
+                quizService
+                    .quizGetOne($stateParams.slug)
+                    .catch(function (e) {
+                        console.log(e)
+                    })
+                    .then(function (res) {
+                        $scope.quizById = res.data.data;
+                        var image = 'https://en.yquizz.com/' + $scope.quizById[0].featuredImg;
+                        ngMeta.setTitle($scope.quizById[0].title);
+                        ngMeta.setTag('description', $scope.quizById[0].description);
+                        ngMeta.setTag('image', image)
+                    });
+            }
         }
         $scope.loadMore = function () {
             if ($scope.quizzes.busy) return;
