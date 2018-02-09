@@ -75,8 +75,8 @@ JsonRefs.resolveRefsAt('./swagger/index.yaml', optionsRef).then(function (result
 });
 
 app.use('/api', routesApi);
-// app.get('*', function (req, res) {
-//     res.sendfile(path.resolve('frontend/app/index.html'))
-// })
+app.get('*', function (req, res) {
+    res.sendfile(path.resolve('frontend/app/index.html'))
+})
 
 module.exports = app;
