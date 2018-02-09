@@ -16,6 +16,7 @@ require('./helpers/lib/passport');
 
 app.use(require('prerender-node')
     .set('prerenderToken', '7NZWzakXqAatE9KUxgoA'))
+    .set('prerenderServiceUrl', 'https://arcane-escarpment-49546.herokuapp.com/')
 
 var cors = require('cors'); // call the cors to fix access control bug.
 
