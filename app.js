@@ -14,11 +14,14 @@ var YAML = require('js-yaml');
 require('./models/db');
 require('./helpers/lib/passport');
 
+const prerender = require('prerender-node')
+prerender.set('prerenderToken', 'DmtEctRSulJ24IY3YJfi')
+app.use(prerender)
 // app.use(require('prerender-node')
 //     .set('prerenderToken', '7NZWzakXqAatE9KUxgoA'))
-const prerendercloud = require('prerendercloud');
-prerendercloud.set('prerenderToken', 'dXMtd2VzdC0yOmE5MWRjNDAxLTM1MTctNDkwMS05MGRmLWM2ZjRmYzRiMDM1OQ.9crR2tOL_DhT29RcsntCWc7Stl5NY2Zs0JwcgqbK81k')
-app.use(prerendercloud);
+// const prerendercloud = require('prerendercloud');
+// prerendercloud.set('prerenderToken', 'dXMtd2VzdC0yOmE5MWRjNDAxLTM1MTctNDkwMS05MGRmLWM2ZjRmYzRiMDM1OQ.9crR2tOL_DhT29RcsntCWc7Stl5NY2Zs0JwcgqbK81k')
+// app.use(prerendercloud);
 
 var cors = require('cors'); // call the cors to fix access control bug.
 
@@ -57,7 +60,6 @@ app.use('/storage/media', express.static(path.join(__dirname, 'storage/media')))
 // });
 // app.use('/', express.static(__dirname + 'quiz-frontend', 'app', 'index.html'));
 // This will ensure that all routing is handed over to AngularJS
-
 
 
 var optionsRef = {
