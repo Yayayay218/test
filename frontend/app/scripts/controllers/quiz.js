@@ -104,7 +104,8 @@ angular.module('YQuiz')
                         var image = 'https://en.yquizz.com/' + $scope.quizById[0].featuredImg;
                         ngMeta.setTitle($scope.quizById[0].title);
                         ngMeta.setTag('description', $scope.quizById[0].description);
-                        ngMeta.setTag('image', image)
+                        ngMeta.setTag('image', image);
+                        ngMeta.setTag('url', window.location.href)
                     });
             }
         }
@@ -139,6 +140,7 @@ angular.module('YQuiz')
                     ngMeta.setTitle($scope.quizById[0].title);
                     ngMeta.setTag('description', $scope.quizById[0].description);
                     ngMeta.setTag('image', image)
+                    ngMeta.setTag('url', window.location.href)
                 });
             console.log($scope.quizById)
             $timeout(function () {
